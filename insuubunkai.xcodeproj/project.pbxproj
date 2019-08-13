@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		90D2991C2301627B00290851 /* UIImage+AnimatedGIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D2991B2301627B00290851 /* UIImage+AnimatedGIF.swift */; };
 		90D2991E230162B500290851 /* UIImageView+AnimatedGIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D2991D230162B500290851 /* UIImageView+AnimatedGIF.swift */; };
+		90D2992023029D0000290851 /* Quiz-Correct.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 90D2991F23029D0000290851 /* Quiz-Correct.mp3 */; };
+		90D2992223029D3400290851 /* incorrect1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 90D2992123029D3400290851 /* incorrect1.mp3 */; };
 		90E52C8E22F2A80500E5CA94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E52C8D22F2A80500E5CA94 /* AppDelegate.swift */; };
 		90E52C9022F2A80500E5CA94 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E52C8F22F2A80500E5CA94 /* ViewController.swift */; };
 		90E52C9322F2A80500E5CA94 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90E52C9122F2A80500E5CA94 /* Main.storyboard */; };
@@ -41,6 +43,8 @@
 /* Begin PBXFileReference section */
 		90D2991B2301627B00290851 /* UIImage+AnimatedGIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+AnimatedGIF.swift"; sourceTree = "<group>"; };
 		90D2991D230162B500290851 /* UIImageView+AnimatedGIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+AnimatedGIF.swift"; sourceTree = "<group>"; };
+		90D2991F23029D0000290851 /* Quiz-Correct.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Quiz-Correct.mp3"; sourceTree = "<group>"; };
+		90D2992123029D3400290851 /* incorrect1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = incorrect1.mp3; sourceTree = "<group>"; };
 		90E52C8A22F2A80500E5CA94 /* insuubunkai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = insuubunkai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90E52C8D22F2A80500E5CA94 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90E52C8F22F2A80500E5CA94 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +115,8 @@
 				90E52C8F22F2A80500E5CA94 /* ViewController.swift */,
 				90E52C9122F2A80500E5CA94 /* Main.storyboard */,
 				90E52CBB22F2AEC100E5CA94 /* View2ViewController.swift */,
+				90D2991F23029D0000290851 /* Quiz-Correct.mp3 */,
+				90D2992123029D3400290851 /* incorrect1.mp3 */,
 				90D2991B2301627B00290851 /* UIImage+AnimatedGIF.swift */,
 				90D2991D230162B500290851 /* UIImageView+AnimatedGIF.swift */,
 				90E8DCFA22FFEE7A0064816D /* UIViewExtension.swift */,
@@ -246,6 +252,8 @@
 			files = (
 				90E52C9822F2A80600E5CA94 /* LaunchScreen.storyboard in Resources */,
 				90E52C9522F2A80600E5CA94 /* Assets.xcassets in Resources */,
+				90D2992223029D3400290851 /* incorrect1.mp3 in Resources */,
+				90D2992023029D0000290851 /* Quiz-Correct.mp3 in Resources */,
 				90E52C9322F2A80500E5CA94 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,6 +8,7 @@
 
 import UIKit
 import WebKit
+import AVFoundation
 
 class View2ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     
@@ -24,6 +25,8 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     @IBOutlet weak var inputLabel4: UILabel!
     
+    @IBOutlet weak var solveNumberLabel: UILabel!
+    
     @IBOutlet weak var CollectionView1: UICollectionView!
     
     @IBOutlet weak var nijisikiImage1: UIImageView!
@@ -32,14 +35,25 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     @IBOutlet weak var gifImage: UIImageView!
     
+    var audioPlayerInstance1 : AVAudioPlayer! = nil
+    var audioPlayerInstance2 : AVAudioPlayer! = nil
     
     var leftValue: Int = 0
     var rightValue: Int = 0
+    
+    var count:Int = 0
 
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        solveNumberLabel.text = ""
+        
+        if(count != 0) {
+            solveNumberLabel.text = "\(count)問"
+        }
+        
         
         // バンドルした画像ファイルを読み込んで、nijisikiImage1に画像を設定
         let image1 = UIImage(named: "二次式")
@@ -296,32 +310,80 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
         b = Int(indicateLabel2.text ?? "0")!
         
         if(leftValue + rightValue == a)&&(leftValue * rightValue == b) {
-            print("正解だよ！")
+            //print("正解だよ！")
             
+            // サウンドファイルのパスを生成
+            let soundFilePath = Bundle.main.path(forResource: "Quiz-Correct", ofType: "mp3")!
             
-            let url = URL(string:"https://www.doyo-juku.com/kentei/answer/img/y.gif")!
+            let sound:URL = URL(fileURLWithPath: soundFilePath)
             
-            let animationGifView = WKWebView(frame: CGRect(x:0,y:0,width:300,height:400))
+            // AVAudioPlayerのインスタンスを作成,ファイルの読み込み
+            do {
+                audioPlayerInstance1 = try AVAudioPlayer(contentsOf: sound, fileTypeHint:nil)
+            } catch {
+                print("AVAudioPlayerインスタンス作成でエラー")
+            }
+            // 再生準備
+            audioPlayerInstance1.prepareToPlay()
             
-            animationGifView.center = CGPoint(x:self.view.frame.width / 2.0,y:self.view.frame.height * 2 / 7.0)
+            // 再生箇所を頭に移す
+            audioPlayerInstance1.currentTime = 0
+            // 再生する
+            audioPlayerInstance1.play()
+
+            
+            let seikaiImage = UIImage(named: "丸（透過）")
+            gifImage.image = seikaiImage
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                // 2秒後に実行する処理
+                // imageを削除
+                self.gifImage.removeFromSuperview()
+                
+                self.loadView()
+                self.viewDidLoad()
+                
+            }
+            
+            count = count + 1
+            
+            //let url = URL(string:"https://www.doyo-juku.com/kentei/answer/img/y.gif")!
+            
+            //let animationGifView = WKWebView(frame: CGRect(x:0,y:0,width:300,height:400))
+            
+            //animationGifView.center = CGPoint(x:self.view.frame.width / 2.0,y:self.view.frame.height * 2 / 7.0)
             
             //urlをNSDataに変換
             //let gifData =  NSData(contentsOf: url)
             
             //gifをloadする
             
-            animationGifView.load(URLRequest(url: url))
-            self.view.addSubview(animationGifView)
+            //animationGifView.load(URLRequest(url: url))
+            //self.view.addSubview(animationGifView)
             
-            //animationGifView.load(gifData! as Data, mimeType: "image/gif", characterEncodingName: "utf-8", baseURL: url)
-            
-            
-            //loadView()
-            //viewDidLoad()
             
             
         } else {
-            print("違いま〜す！（笑）")
+            //print("違いま〜す！（笑）")
+            
+            // サウンドファイルのパスを生成
+            let soundFilePath = Bundle.main.path(forResource: "incorrect1", ofType: "mp3")!
+            
+            let sound:URL = URL(fileURLWithPath: soundFilePath)
+            
+            // AVAudioPlayerのインスタンスを作成,ファイルの読み込み
+            do {
+                audioPlayerInstance2 = try AVAudioPlayer(contentsOf: sound, fileTypeHint:nil)
+            } catch {
+                print("AVAudioPlayerインスタンス作成でエラー")
+            }
+            // 再生準備
+            audioPlayerInstance2.prepareToPlay()
+            
+            // 再生箇所を頭に移す
+            audioPlayerInstance2.currentTime = 0
+            // 再生する
+            audioPlayerInstance2.play()
             
             inputLabel1.text = ""
             inputLabel2.text = ""
