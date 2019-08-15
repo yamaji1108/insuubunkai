@@ -25,6 +25,8 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     @IBOutlet weak var inputLabel4: UILabel!
     
+    @IBOutlet weak var timeCountLabel: UILabel!
+    
     @IBOutlet weak var solveNumberLabel: UILabel!
     
     @IBOutlet weak var CollectionView1: UICollectionView!
@@ -41,19 +43,28 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
     var leftValue: Int = 0
     var rightValue: Int = 0
     
-    var count:Int = 0
-
+    var timer = Timer()
+    var timeCount = 0
+    
+    var solveCount:Int = 0
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // timer処理
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { (timer) in
+            self.timeCount += 1
+            //self.timeCount値をtimeCountLabelに代入
+            self.timeCountLabel.text = "\(self.timeCount)秒"
+        })
+        
+        // 解いた数の表示
         solveNumberLabel.text = ""
         
-        if(count != 0) {
-            solveNumberLabel.text = "\(count)問"
+        if(solveCount != 0) {
+            solveNumberLabel.text = "\(solveCount)問"
         }
-        
         
         // バンドルした画像ファイルを読み込んで、nijisikiImage1に画像を設定
         let image1 = UIImage(named: "二次式")
@@ -100,7 +111,6 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
         } else if (indicateValue2 < 0) {
             indicateLabel2.text = String(indicateValue2)
         }
-
         
     }
     
@@ -113,11 +123,13 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
         let cell = collectionView.dequeueReusableCell( withReuseIdentifier: "Cell", for: indexPath)
         // 表示するセルを登録(先程命名した"Cell")
         
-        //セルの背景色をランダムに設定する。
-        cell.backgroundColor = UIColor(red: CGFloat(drand48()),
-                                       green: CGFloat(drand48()),
-                                       blue: CGFloat(drand48()),
-                                       alpha: 1.0)
+        //セルの背景色を設定する。
+        cell.backgroundColor = UIColor(red: 24/255,green: 127/255,blue: 196/255,alpha: 90/100)
+        
+        //UIColor(red: CGFloat(drand48()),
+        //                               green: CGFloat(drand48()),
+        //                               blue: CGFloat(drand48()),
+        //                               alpha: 1.0)
         
         let cellLabel1 = cell.contentView.viewWithTag(1) as! UILabel
         
@@ -340,12 +352,15 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
                 // imageを削除
                 self.gifImage.removeFromSuperview()
                 
+                // timerの一時停止
+                self.timer.invalidate()
+                
                 self.loadView()
                 self.viewDidLoad()
                 
             }
             
-            count = count + 1
+            solveCount = solveCount + 1
             
             //let url = URL(string:"https://www.doyo-juku.com/kentei/answer/img/y.gif")!
             

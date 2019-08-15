@@ -52,7 +52,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PGa-YZ-GB1">
-                                <rect key="frame" x="67" y="440" width="190" height="230"/>
+                                <rect key="frame" x="65" y="440" width="190" height="230"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="K2j-g3-YME">
@@ -70,9 +70,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y8S-gc-INA">
-                                                    <rect key="frame" x="4" y="15" width="42" height="21"/>
+                                                    <rect key="frame" x="-1" y="15" width="55" height="28"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -91,17 +91,16 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="df2-df-CeY">
                                 <rect key="frame" x="0.0" y="0.0" width="310" height="80"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KQ0-qr-ZiG">
-                                <rect key="frame" x="275" y="510" width="40" height="35"/>
+                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KQ0-qr-ZiG">
+                                <rect key="frame" x="270" y="508" width="70" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="Enter"/>
+                                <state key="normal" title="Enter" image="enterButton"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="2"/>
+                                        <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="2"/>
+                                        <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                         <color key="value" red="0.52036737765920593" green="0.79395624284505573" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -111,17 +110,16 @@
                                     <action selector="enterButton:" destination="RfO-Z7-FR2" eventType="touchUpInside" id="xyq-TG-TDo"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F5A-vD-tDa">
-                                <rect key="frame" x="276" y="610" width="40" height="35"/>
+                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F5A-vD-tDa">
+                                <rect key="frame" x="270" y="612" width="70" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="Back"/>
+                                <state key="normal" title="Back" image="backButton"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="2"/>
+                                        <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="2"/>
+                                        <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                         <color key="value" red="0.52036737765920593" green="0.79395624284505573" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -132,13 +130,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ejX-UN-VRy">
-                                <rect key="frame" x="154.66666666666666" y="286" width="0.0" height="0.0"/>
+                                <rect key="frame" x="156.66666666666666" y="286" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.5"/>
+                                        <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                         <color key="value" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -146,13 +144,13 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k3Y-HF-nVr">
-                                <rect key="frame" x="254.66666666666666" y="286" width="0.0" height="0.0"/>
+                                <rect key="frame" x="255.66666666666666" y="286" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.5"/>
+                                        <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                         <color key="value" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -160,13 +158,13 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d2O-xp-GTA">
-                                <rect key="frame" x="285.66666666666669" y="286" width="0.0" height="0.0"/>
+                                <rect key="frame" x="286.66666666666669" y="286" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.5"/>
+                                        <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                         <color key="value" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -174,13 +172,13 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pcR-Rk-T97">
-                                <rect key="frame" x="123.66666666666667" y="286" width="0.0" height="0.0"/>
+                                <rect key="frame" x="125.66666666666667" y="286" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.5"/>
+                                        <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                         <color key="value" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -188,13 +186,13 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rkx-qX-o3e">
-                                <rect key="frame" x="157.66666666666666" y="164" width="0.0" height="0.0"/>
+                                <rect key="frame" x="157.66666666666666" y="171" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="37"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KCC-NT-t8O">
-                                <rect key="frame" x="253.66666666666666" y="164" width="0.0" height="0.0"/>
+                                <rect key="frame" x="253.66666666666666" y="171" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="37"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -202,41 +200,59 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lfn-MR-XdK">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="解いた数 :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y9E-dg-BF0">
-                                <rect key="frame" x="93" y="346" width="100" height="27"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="解いた数：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y9E-dg-BF0">
+                                <rect key="frame" x="61.666666666666664" y="407.66666666666669" width="111.66666666666669" height="27"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="op9-1n-IAu">
-                                <rect key="frame" x="210" y="348" width="60" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="op9-1n-IAu">
+                                <rect key="frame" x="217.66666666666666" y="421" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qXm-Ae-LIc">
+                                <rect key="frame" x="217.66666666666666" y="386" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="経過時間：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DRo-TW-waK">
+                                <rect key="frame" x="61.666666666666664" y="373" width="111.66666666666669" height="26.333333333333314"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="rkx-qX-o3e" firstAttribute="centerY" secondItem="DEY-vC-YMH" secondAttribute="centerY" constant="-242" id="1nV-8F-maO"/>
-                            <constraint firstItem="gkj-5c-gXQ" firstAttribute="centerY" secondItem="DEY-vC-YMH" secondAttribute="centerY" constant="-247" id="AD9-Nr-iZ9"/>
+                            <constraint firstItem="rkx-qX-o3e" firstAttribute="centerY" secondItem="DEY-vC-YMH" secondAttribute="centerY" constant="-235" id="1nV-8F-maO"/>
+                            <constraint firstItem="gkj-5c-gXQ" firstAttribute="centerY" secondItem="DEY-vC-YMH" secondAttribute="centerY" constant="-240" id="AD9-Nr-iZ9"/>
                             <constraint firstItem="KCC-NT-t8O" firstAttribute="centerX" secondItem="DEY-vC-YMH" secondAttribute="centerX" constant="66" id="EYj-DW-116"/>
                             <constraint firstItem="gkj-5c-gXQ" firstAttribute="centerX" secondItem="DEY-vC-YMH" secondAttribute="centerX" id="GMR-bw-fum"/>
                             <constraint firstItem="lfn-MR-XdK" firstAttribute="centerX" secondItem="DEY-vC-YMH" secondAttribute="centerX" id="JfU-5p-Zap"/>
                             <constraint firstItem="pcR-Rk-T97" firstAttribute="centerY" secondItem="DEY-vC-YMH" secondAttribute="centerY" constant="-120" id="M5F-4n-XJq"/>
                             <constraint firstItem="df2-df-CeY" firstAttribute="centerY" secondItem="DEY-vC-YMH" secondAttribute="centerY" constant="-120" id="OZx-ZL-Xrx"/>
-                            <constraint firstItem="ejX-UN-VRy" firstAttribute="centerX" secondItem="DEY-vC-YMH" secondAttribute="centerX" constant="-33" id="P5A-2i-PId"/>
-                            <constraint firstItem="k3Y-HF-nVr" firstAttribute="centerX" secondItem="DEY-vC-YMH" secondAttribute="centerX" constant="67" id="bc5-Ay-gdz"/>
-                            <constraint firstItem="pcR-Rk-T97" firstAttribute="centerX" secondItem="DEY-vC-YMH" secondAttribute="centerX" constant="-64" id="dKi-f8-TIq"/>
+                            <constraint firstItem="op9-1n-IAu" firstAttribute="centerX" secondItem="DEY-vC-YMH" secondAttribute="centerX" constant="30" id="Ohw-zZ-SIB"/>
+                            <constraint firstItem="ejX-UN-VRy" firstAttribute="centerX" secondItem="DEY-vC-YMH" secondAttribute="centerX" constant="-31" id="P5A-2i-PId"/>
+                            <constraint firstItem="y9E-dg-BF0" firstAttribute="centerY" secondItem="DEY-vC-YMH" secondAttribute="centerY" constant="15" id="YEX-Az-7Cm"/>
+                            <constraint firstItem="DRo-TW-waK" firstAttribute="centerX" secondItem="DEY-vC-YMH" secondAttribute="centerX" constant="-70" id="agh-iS-Hd2"/>
+                            <constraint firstItem="k3Y-HF-nVr" firstAttribute="centerX" secondItem="DEY-vC-YMH" secondAttribute="centerX" constant="68" id="bc5-Ay-gdz"/>
+                            <constraint firstItem="qXm-Ae-LIc" firstAttribute="centerY" secondItem="DEY-vC-YMH" secondAttribute="centerY" constant="-20" id="cz4-ez-cmY"/>
+                            <constraint firstItem="pcR-Rk-T97" firstAttribute="centerX" secondItem="DEY-vC-YMH" secondAttribute="centerX" constant="-62" id="dKi-f8-TIq"/>
+                            <constraint firstItem="op9-1n-IAu" firstAttribute="centerY" secondItem="DEY-vC-YMH" secondAttribute="centerY" constant="15" id="eHV-5j-6pL"/>
+                            <constraint firstItem="DRo-TW-waK" firstAttribute="centerY" secondItem="DEY-vC-YMH" secondAttribute="centerY" constant="-20" id="iEy-gd-Igr"/>
                             <constraint firstItem="k3Y-HF-nVr" firstAttribute="centerY" secondItem="DEY-vC-YMH" secondAttribute="centerY" constant="-120" id="jqv-xn-L9z"/>
-                            <constraint firstItem="d2O-xp-GTA" firstAttribute="centerX" secondItem="DEY-vC-YMH" secondAttribute="centerX" constant="98" id="m3a-Lp-Nhg"/>
+                            <constraint firstItem="d2O-xp-GTA" firstAttribute="centerX" secondItem="DEY-vC-YMH" secondAttribute="centerX" constant="99" id="m3a-Lp-Nhg"/>
+                            <constraint firstItem="y9E-dg-BF0" firstAttribute="centerX" secondItem="DEY-vC-YMH" secondAttribute="centerX" constant="-70" id="m5d-5X-9dO"/>
                             <constraint firstItem="rkx-qX-o3e" firstAttribute="centerX" secondItem="DEY-vC-YMH" secondAttribute="centerX" constant="-30" id="mIL-tb-9QC"/>
+                            <constraint firstItem="qXm-Ae-LIc" firstAttribute="centerX" secondItem="DEY-vC-YMH" secondAttribute="centerX" constant="30" id="o3o-kO-CuF"/>
                             <constraint firstItem="df2-df-CeY" firstAttribute="centerX" secondItem="DEY-vC-YMH" secondAttribute="centerX" id="p8m-g3-DE4"/>
                             <constraint firstItem="ejX-UN-VRy" firstAttribute="centerY" secondItem="DEY-vC-YMH" secondAttribute="centerY" constant="-120" id="rUe-dy-tEE"/>
                             <constraint firstItem="d2O-xp-GTA" firstAttribute="centerY" secondItem="DEY-vC-YMH" secondAttribute="centerY" constant="-120" id="w5l-kF-fea"/>
                             <constraint firstItem="lfn-MR-XdK" firstAttribute="centerY" secondItem="DEY-vC-YMH" secondAttribute="centerY" constant="-110" id="xFp-UQ-3ZN"/>
-                            <constraint firstItem="KCC-NT-t8O" firstAttribute="centerY" secondItem="DEY-vC-YMH" secondAttribute="centerY" constant="-242" id="yKA-NB-g8I"/>
+                            <constraint firstItem="KCC-NT-t8O" firstAttribute="centerY" secondItem="DEY-vC-YMH" secondAttribute="centerY" constant="-235" id="yKA-NB-g8I"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PMi-xG-duq"/>
                     </view>
@@ -252,6 +268,7 @@
                         <outlet property="insuuImage" destination="df2-df-CeY" id="gxF-66-5c3"/>
                         <outlet property="nijisikiImage1" destination="gkj-5c-gXQ" id="jnB-Js-das"/>
                         <outlet property="solveNumberLabel" destination="op9-1n-IAu" id="UtV-gW-jNA"/>
+                        <outlet property="timeCountLabel" destination="qXm-Ae-LIc" id="s4A-F7-FXE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3dR-nv-kf2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -259,4 +276,8 @@
             <point key="canvasLocation" x="965.60000000000002" y="97.536945812807886"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="backButton" width="55" height="40"/>
+        <image name="enterButton" width="55" height="40"/>
+    </resources>
 </document>
