@@ -37,6 +37,27 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     @IBOutlet weak var gifImage: UIImageView!
     
+    @IBOutlet weak var cat1Image: UIImageView!
+    
+    @IBOutlet weak var cat2Image: UIImageView!
+    
+    @IBOutlet weak var cat3Image: UIImageView!
+    
+    @IBOutlet weak var cat4Image: UIImageView!
+    
+    @IBOutlet weak var cat5Image: UIImageView!
+    
+    @IBOutlet weak var cat6Image: UIImageView!
+    
+    @IBOutlet weak var cat7Image: UIImageView!
+    
+    @IBOutlet weak var cat8Image: UIImageView!
+    
+    @IBOutlet weak var cat9Image: UIImageView!
+    
+    @IBOutlet weak var cat10Image: UIImageView!
+        
+    
     var audioPlayerInstance1 : AVAudioPlayer! = nil
     var audioPlayerInstance2 : AVAudioPlayer! = nil
     
@@ -59,14 +80,50 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
             self.timeCountLabel.text = "\(self.timeCount)秒"
         })
         
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 20
+        CollectionView1.collectionViewLayout = layout
+        
         // 解いた数の表示
         solveNumberLabel.text = ""
-        
         if(solveCount != 0) {
             solveNumberLabel.text = "\(solveCount)問"
         }
         
-        // バンドルした画像ファイルを読み込んで、nijisikiImage1に画像を設定
+        // 解いた数に応じて、画面上部に猫の画像を表示
+        if (solveCount > 9) {
+            cat1Image.image = UIImage(named: "cat1")
+        }
+        if (solveCount > 19) {
+            cat2Image.image = UIImage(named: "cat2")
+        }
+        if (solveCount > 29) {
+            cat3Image.image = UIImage(named: "cat3")
+        }
+        if (solveCount > 39) {
+            cat4Image.image = UIImage(named: "cat4")
+        }
+        if (solveCount > 49) {
+            cat5Image.image = UIImage(named: "cat5")
+        }
+        if (solveCount > 59) {
+            cat6Image.image = UIImage(named: "cat6")
+        }
+        if (solveCount > 69) {
+            cat7Image.image = UIImage(named: "cat7")
+        }
+        if (solveCount > 79) {
+            cat8Image.image = UIImage(named: "cat8")
+        }
+        if (solveCount > 89) {
+            cat9Image.image = UIImage(named: "cat9")
+        }
+        if (solveCount > 99) {
+            cat10Image.image = UIImage(named: "cat10")
+        }
+        
+        
+        // バンドルした画像ファイルを読み込んで、二次式と因数用の画像を設定
         let image1 = UIImage(named: "二次式")
         nijisikiImage1.image = image1
 
@@ -83,7 +140,11 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
         let ran1 = array.randomElement()!
         var ran2 = array.randomElement()!
         
-        if (ran1 == ran2) {
+        if (ran1 == 9) && (ran2 == 9) {
+            ran2 = ran2 - 1
+        } else if (ran1 == -9) && (ran2 == 9) {
+            ran2 = ran2 - 1
+        } else if (ran1 == ran2) {
             ran2 = ran2 + 1
         } else if (ran1 == ran2 * (-1)) {
             ran2 = ran2 + 1
@@ -113,6 +174,7 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
         }
         
     }
+    
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -162,11 +224,20 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
 
         
         cellLabel1.textColor = UIColor.white
-
+        
+        // CollectionView1を指定せの位置に配置
+        //CollectionView1.bottom = 670
+        //CollectionView1.left = 67
         
         return cell
     }
     
+    
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        print(CollectionView1)
+//
+//    }
 
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -342,10 +413,8 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
             audioPlayerInstance1.currentTime = 0
             // 再生する
             audioPlayerInstance1.play()
-
             
-            let seikaiImage = UIImage(named: "丸（透過）")
-            gifImage.image = seikaiImage
+            gifImage.image = UIImage(named: "丸（透過）")
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 // 2秒後に実行する処理
