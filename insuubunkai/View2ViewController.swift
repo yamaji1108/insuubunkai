@@ -9,6 +9,7 @@
 import UIKit
 import WebKit
 import AVFoundation
+import GoogleMobileAds
 
 class View2ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     
@@ -30,6 +31,14 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
     @IBOutlet weak var solveNumberLabel: UILabel!
     
     @IBOutlet weak var CollectionView1: UICollectionView!
+    
+    @IBOutlet weak var topConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var leftConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var rightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var nijisikiImage1: UIImageView!
     
@@ -71,7 +80,14 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     
     override func viewDidLoad() {
+        
+        var interstitial: GADInterstitial!
+        
         super.viewDidLoad()
+        
+        interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
+        let request = GADRequest()
+        interstitial.load(request)
         
         // timer処理
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { (timer) in
@@ -81,8 +97,22 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
         })
         
         let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 20
-        CollectionView1.collectionViewLayout = layout
+        
+        // デバイスによって分岐
+        
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            // 使用デバイスがiPhoneの場合
+            layout.minimumLineSpacing = 20
+            let cellWidth = floor(CollectionView1.bounds.width * 0.26)
+            layout.itemSize = CGSize(width: cellWidth, height: cellWidth)
+            CollectionView1.collectionViewLayout = layout
+        } else if UIDevice.current.userInterfaceIdiom == .pad {
+            // 使用デバイスがiPadの場合
+            // collectionの制約を変更
+            let myAppBoundSize: CGSize = UIScreen.main.bounds.size
+            leftConstraint.constant = myAppBoundSize.width * 0.35
+            bottomConstraint.constant = myAppBoundSize.height * 0.25
+        }
         
         // 解いた数の表示
         solveNumberLabel.text = ""
@@ -122,6 +152,18 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
             cat10Image.image = UIImage(named: "cat10")
         }
         
+        //問題を10問といた時点で、インタースティシャル広告を読み込む
+        if (solveCount == 10) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                // 1.0秒後に実行する処理
+                if interstitial.isReady {
+                    interstitial.present(fromRootViewController: self)
+                } else {
+                    print("Ad wasn't ready")
+                }
+            }
+        }
+        
         
         // バンドルした画像ファイルを読み込んで、二次式と因数用の画像を設定
         let image1 = UIImage(named: "二次式")
@@ -143,6 +185,8 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
         if (ran1 == 9) && (ran2 == 9) {
             ran2 = ran2 - 1
         } else if (ran1 == -9) && (ran2 == 9) {
+            ran2 = ran2 - 1
+        } else if (ran1 == 1) && (ran2 == -1) {
             ran2 = ran2 - 1
         } else if (ran1 == ran2) {
             ran2 = ran2 + 1
@@ -225,20 +269,28 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
         
         cellLabel1.textColor = UIColor.white
         
-        // CollectionView1を指定せの位置に配置
+        // CollectionView1を指定の位置に配置
         //CollectionView1.bottom = 670
         //CollectionView1.left = 67
         
         return cell
     }
     
+//    func collectionView(_ collectionView: UICollectionView,
+//                        layout collectionViewLayout: UICollectionViewLayout,
+//                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        return CGSize(width: 210, height: 310)
+//
+//
+//    }
     
 //    override func viewDidAppear(_ animated: Bool) {
 //        super.viewDidAppear(animated)
 //        print(CollectionView1)
 //
 //    }
-
+    
+    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
@@ -349,8 +401,6 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
         }
         
         
-        
-        
         if (inputLabel1.text == "+")&&(inputLabel2.text != "") {
             leftValue = Int(inputLabel2.text ?? "0")!
         } else if (inputLabel1.text == "-")&&(inputLabel2.text != "") {
@@ -362,9 +412,8 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
         } else if (inputLabel3.text == "-")&&(inputLabel4.text != "") {
             rightValue  = Int(inputLabel4.text ?? "0")! * (-1)
         }
-        
-        
     }
+    
     
     @IBAction func backButton(_ sender: UIButton) {
         if(inputLabel4.text != "") {
@@ -417,7 +466,7 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
             gifImage.image = UIImage(named: "丸（透過）")
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                // 2秒後に実行する処理
+                // 1.5秒後に実行する処理
                 // imageを削除
                 self.gifImage.removeFromSuperview()
                 
