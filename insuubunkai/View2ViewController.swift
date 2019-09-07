@@ -11,7 +11,7 @@ import WebKit
 import AVFoundation
 import GoogleMobileAds
 
-class View2ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
+class View2ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,GADInterstitialDelegate {
     
     
     @IBOutlet weak var indicateLabel1: UILabel!
@@ -85,9 +85,8 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
         
         super.viewDidLoad()
         
-        interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
-        let request = GADRequest()
-        interstitial.load(request)
+        //createAndLoadInterstitialメソッドの呼び出し
+        interstitial = createAndLoadInterstitial()
         
         // timer処理
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { (timer) in
@@ -152,18 +151,19 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
             cat10Image.image = UIImage(named: "cat10")
         }
         
-        //問題を10問といた時点で、インタースティシャル広告を読み込む
-        if (solveCount == 10) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                // 1.0秒後に実行する処理
-                if interstitial.isReady {
-                    interstitial.present(fromRootViewController: self)
-                } else {
-                    print("Ad wasn't ready")
+        //問題を10問解くごとに（110問まで）、インタースティシャル広告を読み込む
+        for x in 1...11 {
+            if (solveCount == 10 * x) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                    // 2.0秒後に実行する処理
+                    if interstitial.isReady {
+                        interstitial.present(fromRootViewController: self)
+                    } else {
+                        print("Ad wasn't ready")
+                    }
                 }
             }
         }
-        
         
         // バンドルした画像ファイルを読み込んで、二次式と因数用の画像を設定
         let image1 = UIImage(named: "二次式")
@@ -219,7 +219,18 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
         
     }
     
+    //インタースティシャル広告を読み込む
+    func createAndLoadInterstitial() -> GADInterstitial {
+        var interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
+        interstitial.delegate = self
+        interstitial.load(GADRequest())
+        return interstitial
+    }
     
+    //インタースティシャル広告の初期化
+    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
+        createAndLoadInterstitial()
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 12 // 表示するセルの数
