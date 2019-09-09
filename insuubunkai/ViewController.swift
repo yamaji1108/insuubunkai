@@ -16,8 +16,6 @@ class ViewController: UIViewController {
     // テスト用広告ユニットID
     let TEST_ID = "ca-app-pub-3940256099942544/2934735716"
     
-    // true:テスト false:本番
-    let AdMobTest:Bool = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,13 +31,8 @@ class ViewController: UIViewController {
         admobView.frame.origin = CGPoint(x:self.view.frame.width * 0.1, y:self.view.frame.size.height - admobView.frame.height - 40)
         admobView.frame.size = CGSize(width:self.view.frame.width * 0.8, height:admobView.frame.height)
         
-        
-        if AdMobTest {
-            admobView.adUnitID = TEST_ID
-        }
-        else{
-            admobView.adUnitID = AdMobID
-        }
+        //テスト時はTEST_ID、本番時はAdMobIDを使用
+        admobView.adUnitID = TEST_ID
         
         admobView.rootViewController = self
         admobView.load(GADRequest())

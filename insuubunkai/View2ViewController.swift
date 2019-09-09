@@ -78,10 +78,16 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     var solveCount:Int = 0
     
+    //GADInterstitial型の変数を宣言
+    var interstitial: GADInterstitial!
+    
+    // 広告ユニットID
+    let AdMobInID = "ca-app-pub-7071770782912768/7839053308"
+    // テスト用広告ユニットID
+    let TESTIn_ID = "ca-app-pub-3940256099942544/4411468910"
+    
     
     override func viewDidLoad() {
-        
-        var interstitial: GADInterstitial!
         
         super.viewDidLoad()
         
@@ -151,20 +157,6 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
             cat10Image.image = UIImage(named: "cat10")
         }
         
-        //問題を10問解くごとに（110問まで）、インタースティシャル広告を読み込む
-        for x in 1...11 {
-            if (solveCount == 10 * x) {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                    // 2.0秒後に実行する処理
-                    if interstitial.isReady {
-                        interstitial.present(fromRootViewController: self)
-                    } else {
-                        print("Ad wasn't ready")
-                    }
-                }
-            }
-        }
-        
         // バンドルした画像ファイルを読み込んで、二次式と因数用の画像を設定
         let image1 = UIImage(named: "二次式")
         nijisikiImage1.image = image1
@@ -221,7 +213,7 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     //インタースティシャル広告を読み込む
     func createAndLoadInterstitial() -> GADInterstitial {
-        var interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
+        var interstitial = GADInterstitial(adUnitID: TESTIn_ID)
         interstitial.delegate = self
         interstitial.load(GADRequest())
         return interstitial
@@ -438,7 +430,7 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
         }
     }
     
-    @IBAction func enterButton(_ sender: UIButton) {
+    @IBAction internal func enterButton(_ sender: UIButton) {
         let a: Int
         let b: Int
         
@@ -452,8 +444,10 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
         
         b = Int(indicateLabel2.text ?? "0")!
         
+        //正解だった時
         if(leftValue + rightValue == a)&&(leftValue * rightValue == b) {
-            //print("正解だよ！")
+            //solveCountを1増やす
+            solveCount = solveCount + 1
             
             // サウンドファイルのパスを生成
             let soundFilePath = Bundle.main.path(forResource: "Quiz-Correct", ofType: "mp3")!
@@ -484,28 +478,21 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
                 // timerの一時停止
                 self.timer.invalidate()
                 
+                //問題を10問解くごとに（110問まで）、インタースティシャル広告を読み込む
+                for x in 1...11 {
+                    if (self.solveCount == 10 * x) {
+                        // 2.0秒後に実行する処理
+                        if self.interstitial.isReady {
+                            self.interstitial.present(fromRootViewController: self)
+                        } else {
+                            print("Ad wasn't ready")
+                        }
+                    }
+                }
+                
                 self.loadView()
                 self.viewDidLoad()
-                
             }
-            
-            solveCount = solveCount + 1
-            
-            //let url = URL(string:"https://www.doyo-juku.com/kentei/answer/img/y.gif")!
-            
-            //let animationGifView = WKWebView(frame: CGRect(x:0,y:0,width:300,height:400))
-            
-            //animationGifView.center = CGPoint(x:self.view.frame.width / 2.0,y:self.view.frame.height * 2 / 7.0)
-            
-            //urlをNSDataに変換
-            //let gifData =  NSData(contentsOf: url)
-            
-            //gifをloadする
-            
-            //animationGifView.load(URLRequest(url: url))
-            //self.view.addSubview(animationGifView)
-            
-            
             
         } else {
             //print("違いま〜す！（笑）")
