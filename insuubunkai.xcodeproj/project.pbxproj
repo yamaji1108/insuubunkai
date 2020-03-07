@@ -152,8 +152,8 @@
 			isa = PBXGroup;
 			children = (
 				90E52C8D22F2A80500E5CA94 /* AppDelegate.swift */,
-				90E52C8F22F2A80500E5CA94 /* ViewController.swift */,
 				90E52C9122F2A80500E5CA94 /* Main.storyboard */,
+				90E52C8F22F2A80500E5CA94 /* ViewController.swift */,
 				90E52CBB22F2AEC100E5CA94 /* View2ViewController.swift */,
 				90D2991F23029D0000290851 /* Quiz-Correct.mp3 */,
 				90D2992123029D3400290851 /* incorrect1.mp3 */,

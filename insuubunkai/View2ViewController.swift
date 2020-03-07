@@ -13,10 +13,17 @@ import GoogleMobileAds
 
 class View2ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,GADInterstitialDelegate {
     
+    //トップ画面から受け取ったデータ
+    var highscore2 = ""
+    
+    //テスト用ラベル
+    @IBOutlet weak var testLabel: UILabel!
     
     @IBOutlet weak var indicateLabel1: UILabel!
     
     @IBOutlet weak var indicateLabel2: UILabel!
+    
+    @IBOutlet weak var indicateLabel3: UILabel!
     
     @IBOutlet weak var inputLabel1: UILabel!
     
@@ -41,6 +48,8 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
     @IBOutlet weak var rightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var nijisikiImage1: UIImageView!
+    
+    @IBOutlet weak var nijisikiImage2: UIImageView!
     
     @IBOutlet weak var insuuImage: UIImageView!
     
@@ -90,6 +99,9 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        //ハイスコア表示のテスト
+        testLabel.text = highscore2
         
         //createAndLoadInterstitialメソッドの呼び出し
         interstitial = createAndLoadInterstitial()
@@ -157,57 +169,71 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
             cat10Image.image = UIImage(named: "cat10")
         }
         
-        // バンドルした画像ファイルを読み込んで、二次式と因数用の画像を設定
-        let image1 = UIImage(named: "二次式")
-        nijisikiImage1.image = image1
-
-        let image2 = UIImage(named: "因数分解")
-        insuuImage.image = image2
+        indicateLabel1.text = ""
+        indicateLabel2.text = ""
+        indicateLabel3.text = ""
+        
+        
         
         inputLabel1.text = ""
         inputLabel2.text = ""
         inputLabel3.text = ""
         inputLabel4.text = ""
         
-        let array: [Int] = [-9,-8,-7,-6,-5,-4,-3,-2,-1,1,2,3,4,5,6,7,8,9]
+        let array: [Int] = [-15,-14,-13,-12,-11,-10,-9,-8,-7,-6,-5,-4,-3,-2,-1,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
         
-        let ran1 = array.randomElement()!
+        var ran1 = array.randomElement()!
         var ran2 = array.randomElement()!
         
-        if (ran1 == 9) && (ran2 == 9) {
+        if (ran1 == 15) && (ran2 == 15) {
             ran2 = ran2 - 1
-        } else if (ran1 == -9) && (ran2 == 9) {
-            ran2 = ran2 - 1
-        } else if (ran1 == 1) && (ran2 == -1) {
+        } else if (ran1 == -1) && (ran2 == -1) {
             ran2 = ran2 - 1
         } else if (ran1 == ran2) {
-            ran2 = ran2 + 1
-        } else if (ran1 == ran2 * (-1)) {
             ran2 = ran2 + 1
         }
         
         let indicateValue1 = ran1 + ran2
         let indicateValue2 = ran1 * ran2
         
-        if(indicateValue1 > 0) {
-            if (indicateValue1 == 1) {
-                indicateLabel1.text = "+"
-            } else {
-                indicateLabel1.text = "+\(String(indicateValue1))"
+        // バンドルした画像ファイルを読み込んで、二次式と因数用の画像を設定
+        
+        //2乗-2乗パターン
+        if (indicateValue1 == 0) {
+            let niji2 = UIImage(named: "二次式2乗")
+            nijisikiImage2.image = niji2
+            
+            indicateLabel3.text = String(indicateValue2)
+        }
+        //通常パターン
+        else {
+            let niji1 = UIImage(named: "二次式")
+            nijisikiImage1.image = niji1
+            
+            if(indicateValue1 > 0) {
+                if (indicateValue1 == 1) {
+                    indicateLabel1.text = "+"
+                } else {
+                    indicateLabel1.text = "+\(String(indicateValue1))"
+                }
+            } else if (indicateValue1 < 0) {
+                if (indicateValue1 == -1) {
+                    indicateLabel1.text = "-"
+                } else {
+                    indicateLabel1.text = String(indicateValue1)
+                }
             }
-        } else if (indicateValue1 < 0) {
-            if (indicateValue1 == -1) {
-                indicateLabel1.text = "-"
-            } else {
-                indicateLabel1.text = String(indicateValue1)
+            
+            if(indicateValue2 > 0) {
+                indicateLabel2.text = "+\(String(indicateValue2))"
+            } else if (indicateValue2 < 0) {
+                indicateLabel2.text = String(indicateValue2)
             }
         }
         
-        if(indicateValue2 > 0) {
-            indicateLabel2.text = "+\(String(indicateValue2))"
-        } else if (indicateValue2 < 0) {
-            indicateLabel2.text = String(indicateValue2)
-        }
+        let image2 = UIImage(named: "因数分解")
+        insuuImage.image = image2
+        
         
     }
     
@@ -244,11 +270,11 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
         
         
         if (String(indexPath.row) == "0") {
-            cellLabel1.text = "1"
+            cellLabel1.text = "7"
         } else if (String(indexPath.row) == "1") {
-            cellLabel1.text = "2"
+            cellLabel1.text = "8"
         } else if (String(indexPath.row) == "2") {
-            cellLabel1.text = "3"
+            cellLabel1.text = "9"
         } else if (String(indexPath.row) == "3") {
             cellLabel1.text = "4"
         } else if (String(indexPath.row) == "4") {
@@ -256,17 +282,17 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
         } else if (String(indexPath.row) == "5") {
             cellLabel1.text = "6"
         } else if (String(indexPath.row) == "6") {
-            cellLabel1.text = "7"
+            cellLabel1.text = "1"
         } else if (String(indexPath.row) == "7") {
-            cellLabel1.text = "8"
+            cellLabel1.text = "2"
         } else if (String(indexPath.row) == "8") {
-            cellLabel1.text = "9"
+            cellLabel1.text = "3"
         } else if (String(indexPath.row) == "9") {
-            cellLabel1.text = "-"
+            cellLabel1.text = "+"
         } else if (String(indexPath.row) == "10") {
             cellLabel1.text = "0"
         } else if (String(indexPath.row) == "11") {
-            cellLabel1.text = "+"
+            cellLabel1.text = "-"
         }
 
         
@@ -317,19 +343,19 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
             } else if (String(indexPath.row) == "8") {
                 inputLabel1.text = ""
             } else if (String(indexPath.row) == "9") {
-                inputLabel1.text = "-"
+                inputLabel1.text = "+"
             } else if (String(indexPath.row) == "10") {
                 inputLabel1.text = ""
             } else if (String(indexPath.row) == "11") {
-                inputLabel1.text = "+"
+                inputLabel1.text = "-"
             }
         } else if (inputLabel2.text == "") {
             if (String(indexPath.row) == "0") {
-                inputLabel2.text = "1"
+                inputLabel2.text = "7"
             } else if (String(indexPath.row) == "1") {
-                inputLabel2.text = "2"
+                inputLabel2.text = "8"
             } else if (String(indexPath.row) == "2") {
-                inputLabel2.text = "3"
+                inputLabel2.text = "9"
             } else if (String(indexPath.row) == "3") {
                 inputLabel2.text = "4"
             } else if (String(indexPath.row) == "4") {
@@ -337,51 +363,83 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
             } else if (String(indexPath.row) == "5") {
                 inputLabel2.text = "6"
             } else if (String(indexPath.row) == "6") {
-                inputLabel2.text = "7"
+                inputLabel2.text = "1"
             } else if (String(indexPath.row) == "7") {
-                inputLabel2.text = "8"
+                inputLabel2.text = "2"
             } else if (String(indexPath.row) == "8") {
-                inputLabel2.text = "9"
+                inputLabel2.text = "3"
             } else if (String(indexPath.row) == "9") {
-                inputLabel2.text = ""
+                inputLabel1.text = "+"
             } else if (String(indexPath.row) == "10") {
                 inputLabel2.text = "0"
             } else if (String(indexPath.row) == "11") {
-                inputLabel2.text = ""
+                inputLabel1.text = "-"
             }
-        } else if (inputLabel3.text == "") {
+        } else if (inputLabel2.text != "")&&(inputLabel3.text == "") {
+            let int = Int(inputLabel2.text!)!
+            
             if (String(indexPath.row) == "0") {
-                inputLabel3.text = ""
+                let int0 = int * 10 + 7
+                if(int0 < 100){
+                    inputLabel2.text = String(int0)
+                }
             } else if (String(indexPath.row) == "1") {
-                inputLabel3.text = ""
+                let int1 = int * 10 + 8
+                if(int1 < 100){
+                    inputLabel2.text = String(int1)
+                }
             } else if (String(indexPath.row) == "2") {
-                inputLabel3.text = ""
+                let int2 = int * 10 + 9
+                if(int2 < 100){
+                    inputLabel2.text = String(int2)
+                }
             } else if (String(indexPath.row) == "3") {
-                inputLabel3.text = ""
+                let int3 = int * 10 + 4
+                if(int3 < 100){
+                    inputLabel2.text = String(int3)
+                }
             } else if (String(indexPath.row) == "4") {
-                inputLabel3.text = ""
+                let int4 = int * 10 + 5
+                if(int4 < 100){
+                    inputLabel2.text = String(int4)
+                }
             } else if (String(indexPath.row) == "5") {
-                inputLabel3.text = ""
+                let int5 = int * 10 + 6
+                if(int5 < 100){
+                    inputLabel2.text = String(int5)
+                }
             } else if (String(indexPath.row) == "6") {
-                inputLabel3.text = ""
+                let int6 = int * 10 + 1
+                if(int6 < 100){
+                    inputLabel2.text = String(int6)
+                }
             } else if (String(indexPath.row) == "7") {
-                inputLabel3.text = ""
+                let int7 = int * 10 + 2
+                if(int7 < 100){
+                    inputLabel2.text = String(int7)
+                }
             } else if (String(indexPath.row) == "8") {
-                inputLabel3.text = ""
+                let int8 = int * 10 + 3
+                if(int8 < 100){
+                    inputLabel2.text = String(int8)
+                }
             } else if (String(indexPath.row) == "9") {
-                inputLabel3.text = "-"
-            } else if (String(indexPath.row) == "10") {
-                inputLabel3.text = ""
-            } else if (String(indexPath.row) == "11") {
                 inputLabel3.text = "+"
+            } else if (String(indexPath.row) == "10") {
+                let int10 = int * 10 + 0
+                if(int10 < 100){
+                    inputLabel2.text = String(int10)
+                }
+            } else if (String(indexPath.row) == "11") {
+                inputLabel3.text = "-"
             }
-        } else {
+        } else if (inputLabel4.text == "") {
             if (String(indexPath.row) == "0") {
-                inputLabel4.text = "1"
+                inputLabel4.text = "7"
             } else if (String(indexPath.row) == "1") {
-                inputLabel4.text = "2"
+                inputLabel4.text = "8"
             } else if (String(indexPath.row) == "2") {
-                inputLabel4.text = "3"
+                inputLabel4.text = "9"
             } else if (String(indexPath.row) == "3") {
                 inputLabel4.text = "4"
             } else if (String(indexPath.row) == "4") {
@@ -389,17 +447,75 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
             } else if (String(indexPath.row) == "5") {
                 inputLabel4.text = "6"
             } else if (String(indexPath.row) == "6") {
-                inputLabel4.text = "7"
+                inputLabel4.text = "1"
             } else if (String(indexPath.row) == "7") {
-                inputLabel4.text = "8"
+                inputLabel4.text = "2"
             } else if (String(indexPath.row) == "8") {
-                inputLabel4.text = "9"
+                inputLabel4.text = "3"
             } else if (String(indexPath.row) == "9") {
-                inputLabel4.text = ""
+                inputLabel3.text = "+"
             } else if (String(indexPath.row) == "10") {
                 inputLabel4.text = "0"
             } else if (String(indexPath.row) == "11") {
-                inputLabel4.text = ""
+                inputLabel3.text = "-"
+            }
+        } else if (inputLabel4.text != "") {
+            let int = Int(inputLabel4.text!)!
+            
+            if (String(indexPath.row) == "0") {
+                let int0 = int * 10 + 7
+                if (int0 < 100) {
+                    inputLabel4.text = String(int0)
+                }
+            } else if (String(indexPath.row) == "1") {
+                let int1 = int * 10 + 8
+                if (int1 < 100) {
+                    inputLabel4.text = String(int1)
+                }
+            } else if (String(indexPath.row) == "2") {
+                let int2 = int * 10 + 9
+                if (int2 < 100) {
+                    inputLabel4.text = String(int2)
+                }
+            } else if (String(indexPath.row) == "3") {
+                let int3 = int * 10 + 4
+                if (int3 < 100) {
+                    inputLabel4.text = String(int3)
+                }
+            } else if (String(indexPath.row) == "4") {
+                let int4 = int * 10 + 5
+                if (int4 < 100) {
+                    inputLabel4.text = String(int4)
+                }
+            } else if (String(indexPath.row) == "5") {
+                let int5 = int * 10 + 6
+                if (int5 < 100) {
+                    inputLabel4.text = String(int5)
+                }
+            } else if (String(indexPath.row) == "6") {
+                let int6 = int * 10 + 1
+                if (int6 < 100) {
+                    inputLabel4.text = String(int6)
+                }
+            } else if (String(indexPath.row) == "7") {
+                let int7 = int * 10 + 2
+                if (int7 < 100) {
+                    inputLabel4.text = String(int7)
+                }
+            } else if (String(indexPath.row) == "8") {
+                let int8 = int * 10 + 3
+                if (int8 < 100) {
+                    inputLabel4.text = String(int8)
+                }
+            } else if (String(indexPath.row) == "9") {
+                inputLabel3.text = "+"
+            } else if (String(indexPath.row) == "10") {
+                let int10 = int * 10 + 0
+                if (int10 < 100) {
+                    inputLabel4.text = String(int10)
+                }
+            } else if (String(indexPath.row) == "11") {
+                inputLabel3.text = "-"
             }
         }
         
@@ -434,15 +550,25 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
         let a: Int
         let b: Int
         
-        if(indicateLabel1.text == "+") {
-            a = 1
-        } else if (indicateLabel1.text == "-") {
-            a = -1
-        } else {
-            a = Int(indicateLabel1.text ?? "0")!
+        //2乗-2乗のパターン
+        if(indicateLabel3.text != "") {
+            a = 0
+            b = Int(indicateLabel3.text ?? "0")!
+        }
+        //通常パターン
+        else {
+            if(indicateLabel1.text == "+") {
+                a = 1
+            } else if (indicateLabel1.text == "-") {
+                a = -1
+            } else {
+                a = Int(indicateLabel1.text ?? "0")!
+            }
+            
+            b = Int(indicateLabel2.text ?? "0")!
         }
         
-        b = Int(indicateLabel2.text ?? "0")!
+        
         
         //正解だった時
         if(leftValue + rightValue == a)&&(leftValue * rightValue == b) {
@@ -474,6 +600,8 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
                 // 1.5秒後に実行する処理
                 // imageを削除
                 self.gifImage.removeFromSuperview()
+                self.nijisikiImage1.removeFromSuperview()
+                self.nijisikiImage2.removeFromSuperview()
                 
                 // timerの一時停止
                 self.timer.invalidate()
@@ -494,7 +622,9 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
                 self.viewDidLoad()
             }
             
-        } else {
+        }
+        //不正解だった時
+        else {
             //print("違いま〜す！（笑）")
             
             // サウンドファイルのパスを生成

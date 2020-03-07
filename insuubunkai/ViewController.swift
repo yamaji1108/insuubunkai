@@ -16,6 +16,15 @@ class ViewController: UIViewController {
     // テスト用広告ユニットID
     let TEST_ID = "ca-app-pub-3940256099942544/2934735716"
     
+    @IBOutlet weak var startButton: UIButton!
+    
+    
+    //ハイスコア管理
+    let ud = UserDefaults.standard
+    var highscore1 : String = ""
+    
+    @IBOutlet weak var highscoreLabel: UILabel!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,10 +46,40 @@ class ViewController: UIViewController {
         admobView.rootViewController = self
         admobView.load(GADRequest())
         
+        //ハイスコアはいったん0に
+        ud.set( "0" , forKey: "highscore")
+        
         self.view.addSubview(admobView)
         
+        highscore1 = (ud.object(forKey: "highscore") as? String)!
+        
+        highscoreLabel.text = "あなたのハイスコア：" + highscore1 + "問"
+        
     }
+    
+    
+    // ①セグエ実行前処理
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
+        // ②Segueの識別子確認
+        if segue.identifier == "toSecond" {
+
+            // ③遷移先ViewCntrollerの取得
+            let secondView = segue.destination as! View2ViewController
+
+            // ④値の設定
+            secondView.highscore2 = ud.object(forKey: "highscore") as! String
+        }
+    }
+    
+    @IBAction func startAction(_ sender: UIButton) {
+
+        performSegue(withIdentifier: "toSecond", sender: nil)
+
+    }
+    
+    
+    
 
 }
 
