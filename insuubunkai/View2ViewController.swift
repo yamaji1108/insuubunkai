@@ -14,7 +14,7 @@ import GoogleMobileAds
 class View2ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,GADInterstitialDelegate {
     
     //トップ画面から受け取ったデータ
-    var highscore2 = ""
+    var highscore2 = 0
     
     //テスト用ラベル
     @IBOutlet weak var testLabel: UILabel!
@@ -101,7 +101,7 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
         super.viewDidLoad()
         
         //ハイスコア表示のテスト
-        testLabel.text = highscore2
+        //testLabel.text = highscore2
         
         //createAndLoadInterstitialメソッドの呼び出し
         interstitial = createAndLoadInterstitial()
@@ -653,6 +653,27 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
             
         }
     }
+    
+    // ①セグエ実行前処理
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // ②Segueの識別子確認
+        if segue.identifier == "toFirst" {
+            
+            // ③遷移先ViewCntrollerの取得
+            let firstView = segue.destination as! ViewController
+            
+            // ④値の設定
+            firstView.solveCount1 = solveCount
+        }
+    }
+    
+    @IBAction func homeButtonAction(_ sender: UIButton) {
+        //highscore2 = String(Int(highscore2)! + solveCount)
+        performSegue(withIdentifier: "toFirst", sender: nil)
+        
+    }
+    
     
     
     

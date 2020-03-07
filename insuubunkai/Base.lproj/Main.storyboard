@@ -18,18 +18,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O6n-Li-Evc">
-                                <rect key="frame" x="51.666666666666657" y="186" width="272" height="40"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="ひたすら因数分解">
-                                        <attributes>
-                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <font key="NSFont" size="34" name="ToppanBunkyuMidashiGothicStdN-ExtraBold"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ひたすら因数分解" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O6n-Li-Evc">
+                                <rect key="frame" x="35.666666666666657" y="187" width="304" height="38"/>
+                                <fontDescription key="fontDescription" name="HoeflerText-Black" family="Hoefler Text" pointSize="38"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.90616747359154926" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Il2-sY-QsO">
                                 <rect key="frame" x="128.66666666666666" y="476" width="118" height="60"/>
@@ -40,7 +38,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8yG-Gw-CIK">
-                                <rect key="frame" x="149.66666666666666" y="251.00000000000003" width="75.666666666666657" height="38.333333333333343"/>
+                                <rect key="frame" x="149.66666666666666" y="250.00000000000003" width="75.666666666666657" height="38.333333333333343"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -65,7 +63,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="97.767857142857139"/>
+            <point key="canvasLocation" x="100" y="98"/>
         </scene>
         <!--View2 View Controller-->
         <scene sceneID="hxz-jw-P5Y">
@@ -118,7 +116,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="310" height="80"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KQ0-qr-ZiG">
-                                <rect key="frame" x="266" y="461" width="133" height="90"/>
+                                <rect key="frame" x="266" y="451" width="133" height="90"/>
                                 <state key="normal" title="Enter" image="Enterボタン"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -136,7 +134,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F5A-vD-tDa">
-                                <rect key="frame" x="267.66666666666669" y="581" width="130" height="90"/>
+                                <rect key="frame" x="267.66666666666669" y="561" width="130" height="90"/>
                                 <state key="normal" title="Back" image="Backボタン"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -284,17 +282,24 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nYE-4p-hsE">
                                 <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAE-UW-gyP">
-                                <rect key="frame" x="268" y="704" width="71" height="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAE-UW-gyP">
+                                <rect key="frame" x="268" y="704" width="0.0" height="0.0"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LcI-BW-SMG">
+                                <rect key="frame" x="263" y="668.66666666666663" width="149" height="95"/>
+                                <state key="normal" title="Button" image="homeボタン"/>
+                                <connections>
+                                    <action selector="homeButtonAction:" destination="RfO-Z7-FR2" eventType="touchUpInside" id="BUW-Il-MGf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="F5A-vD-tDa" firstAttribute="centerY" secondItem="DEY-vC-YMH" secondAttribute="centerY" constant="220" id="0hZ-1h-jQS"/>
+                            <constraint firstItem="F5A-vD-tDa" firstAttribute="centerY" secondItem="DEY-vC-YMH" secondAttribute="centerY" constant="200" id="0hZ-1h-jQS"/>
                             <constraint firstItem="o8m-i0-D5r" firstAttribute="centerX" secondItem="DEY-vC-YMH" secondAttribute="centerX" id="0zO-Pz-fb3"/>
                             <constraint firstItem="rkx-qX-o3e" firstAttribute="centerY" secondItem="DEY-vC-YMH" secondAttribute="centerY" constant="-220" id="1nV-8F-maO"/>
                             <constraint firstItem="1p7-Mm-yNn" firstAttribute="centerX" secondItem="DEY-vC-YMH" secondAttribute="centerX" constant="31" id="2vc-2S-hTb"/>
@@ -302,13 +307,14 @@
                             <constraint firstItem="A0c-mW-zN0" firstAttribute="centerY" secondItem="DEY-vC-YMH" secondAttribute="centerY" constant="-266" id="3y1-po-6ql"/>
                             <constraint firstItem="odv-sW-xUq" firstAttribute="centerX" secondItem="DEY-vC-YMH" secondAttribute="centerX" constant="146" id="8Uy-P0-rr0"/>
                             <constraint firstItem="KQ0-qr-ZiG" firstAttribute="leading" secondItem="PGa-YZ-GB1" secondAttribute="trailing" constant="10" id="8Wg-eW-vD0"/>
-                            <constraint firstItem="KQ0-qr-ZiG" firstAttribute="centerY" secondItem="DEY-vC-YMH" secondAttribute="centerY" constant="100" id="8hz-gM-IfF"/>
+                            <constraint firstItem="KQ0-qr-ZiG" firstAttribute="centerY" secondItem="DEY-vC-YMH" secondAttribute="centerY" constant="90" id="8hz-gM-IfF"/>
                             <constraint firstItem="gkj-5c-gXQ" firstAttribute="centerY" secondItem="DEY-vC-YMH" secondAttribute="centerY" constant="-225" id="AD9-Nr-iZ9"/>
                             <constraint firstItem="JNY-1k-MJG" firstAttribute="centerX" secondItem="DEY-vC-YMH" secondAttribute="centerX" constant="-120" id="CBi-1n-FzR"/>
                             <constraint firstItem="KCC-NT-t8O" firstAttribute="centerX" secondItem="DEY-vC-YMH" secondAttribute="centerX" constant="66" id="EYj-DW-116"/>
                             <constraint firstItem="gkj-5c-gXQ" firstAttribute="centerX" secondItem="DEY-vC-YMH" secondAttribute="centerX" id="GMR-bw-fum"/>
                             <constraint firstItem="JNY-1k-MJG" firstAttribute="centerY" secondItem="DEY-vC-YMH" secondAttribute="centerY" constant="-266" id="Gfz-xf-j35"/>
                             <constraint firstItem="A0c-mW-zN0" firstAttribute="centerX" secondItem="DEY-vC-YMH" secondAttribute="centerX" constant="88" id="IAD-LS-ftZ"/>
+                            <constraint firstItem="LcI-BW-SMG" firstAttribute="centerY" secondItem="DEY-vC-YMH" secondAttribute="centerY" constant="310" id="IWs-Y3-Naw"/>
                             <constraint firstItem="lfn-MR-XdK" firstAttribute="centerX" secondItem="DEY-vC-YMH" secondAttribute="centerX" id="JfU-5p-Zap"/>
                             <constraint firstItem="pcR-Rk-T97" firstAttribute="centerY" secondItem="DEY-vC-YMH" secondAttribute="centerY" constant="-110" id="M5F-4n-XJq"/>
                             <constraint firstItem="6oe-se-L3R" firstAttribute="centerX" secondItem="DEY-vC-YMH" secondAttribute="centerX" id="OAl-im-P8o"/>
@@ -345,6 +351,7 @@
                             <constraint firstItem="rkx-qX-o3e" firstAttribute="centerX" secondItem="DEY-vC-YMH" secondAttribute="centerX" constant="-30" id="mIL-tb-9QC"/>
                             <constraint firstItem="qXm-Ae-LIc" firstAttribute="centerX" secondItem="DEY-vC-YMH" secondAttribute="centerX" constant="30" id="o3o-kO-CuF"/>
                             <constraint firstItem="df2-df-CeY" firstAttribute="centerX" secondItem="DEY-vC-YMH" secondAttribute="centerX" id="p8m-g3-DE4"/>
+                            <constraint firstItem="LcI-BW-SMG" firstAttribute="centerX" secondItem="DEY-vC-YMH" secondAttribute="centerX" constant="150" id="pB2-3r-ATh"/>
                             <constraint firstItem="F5A-vD-tDa" firstAttribute="centerX" secondItem="DEY-vC-YMH" secondAttribute="centerX" constant="145" id="pxr-P2-PG0"/>
                             <constraint firstItem="ejX-UN-VRy" firstAttribute="centerY" secondItem="DEY-vC-YMH" secondAttribute="centerY" constant="-110" id="rUe-dy-tEE"/>
                             <constraint firstItem="AtX-ho-LBs" firstAttribute="centerY" secondItem="DEY-vC-YMH" secondAttribute="centerY" constant="-266" id="sah-56-1ZG"/>
@@ -385,6 +392,7 @@
                         <outlet property="testLabel" destination="gAE-UW-gyP" id="Jlf-dW-2GN"/>
                         <outlet property="timeCountLabel" destination="qXm-Ae-LIc" id="s4A-F7-FXE"/>
                         <outlet property="topConstraint" destination="dtC-dS-fr8" id="dND-si-lAG"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="toFirst" id="yRY-su-35y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3dR-nv-kf2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -395,5 +403,6 @@
     <resources>
         <image name="Backボタン" width="90" height="90"/>
         <image name="Enterボタン" width="90" height="90"/>
+        <image name="homeボタン" width="95" height="95"/>
     </resources>
 </document>

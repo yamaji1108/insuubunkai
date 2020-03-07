@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     
     //ハイスコア管理
     let ud = UserDefaults.standard
-    var highscore1 : String = ""
+    var solveCount1 = 0
     
     @IBOutlet weak var highscoreLabel: UILabel!
     
@@ -33,7 +33,6 @@ class ViewController: UIViewController {
         print("Google Mobile Ads SDK version: \(GADRequest.sdkVersion())")
         
         var admobView = GADBannerView()
-        
         admobView = GADBannerView(adSize:kGADAdSizeBanner)
         
         // 広告の位置調整
@@ -46,14 +45,22 @@ class ViewController: UIViewController {
         admobView.rootViewController = self
         admobView.load(GADRequest())
         
-        //ハイスコアはいったん0に
-        ud.set( "0" , forKey: "highscore")
-        
         self.view.addSubview(admobView)
         
-        highscore1 = (ud.object(forKey: "highscore") as? String)!
+        //保存済みの情報を取得
+        var highscore1 = ud.integer(forKey: "highscore")
         
-        highscoreLabel.text = "あなたのハイスコア：" + highscore1 + "問"
+        //元の解いた数に今解いた数を足す
+        highscore1 = highscore1 + solveCount1
+        
+        //取得した情報をuserdefaultのインスタンスに格納
+        ud.set(highscore1 , forKey: "highscore")
+        
+        //端末に情報を保存
+        ud.synchronize()
+        
+        //画面にハイスコアを表示
+        highscoreLabel.text = "因数分解した数： " + String(highscore1) + " 問"
         
     }
     
@@ -68,7 +75,7 @@ class ViewController: UIViewController {
             let secondView = segue.destination as! View2ViewController
 
             // ④値の設定
-            secondView.highscore2 = ud.object(forKey: "highscore") as! String
+            secondView.highscore2 = ud.integer(forKey: "highscore")
         }
     }
     
