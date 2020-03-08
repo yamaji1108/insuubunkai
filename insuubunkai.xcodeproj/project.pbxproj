@@ -25,6 +25,12 @@
 		90E52CBC22F2AEC100E5CA94 /* View2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E52CBB22F2AEC100E5CA94 /* View2ViewController.swift */; };
 		90E52CBE22F82AAE00E5CA94 /* CollectionViewCell1CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E52CBD22F82AAE00E5CA94 /* CollectionViewCell1CollectionViewCell.swift */; };
 		90E8DCFB22FFEE7A0064816D /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E8DCFA22FFEE7A0064816D /* UIViewExtension.swift */; };
+		90FBABD02414969E0015128C /* View3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FBABCF2414969E0015128C /* View3ViewController.swift */; };
+		90FBABD22414D5FA0015128C /* ready-sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 90FBABD12414D5FA0015128C /* ready-sound.mp3 */; };
+		90FBABD42414D6060015128C /* start-sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 90FBABD32414D6060015128C /* start-sound.mp3 */; };
+		90FBABD624150D450015128C /* end-sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 90FBABD524150D450015128C /* end-sound.mp3 */; };
+		90FBABD824151B610015128C /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FBABD724151B610015128C /* ResultViewController.swift */; };
+		90FBABDA241531D90015128C /* kansei.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 90FBABD9241531D90015128C /* kansei.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +73,12 @@
 		90E52CBB22F2AEC100E5CA94 /* View2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View2ViewController.swift; sourceTree = "<group>"; };
 		90E52CBD22F82AAE00E5CA94 /* CollectionViewCell1CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell1CollectionViewCell.swift; sourceTree = "<group>"; };
 		90E8DCFA22FFEE7A0064816D /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		90FBABCF2414969E0015128C /* View3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View3ViewController.swift; sourceTree = "<group>"; };
+		90FBABD12414D5FA0015128C /* ready-sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "ready-sound.mp3"; sourceTree = "<group>"; };
+		90FBABD32414D6060015128C /* start-sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "start-sound.mp3"; sourceTree = "<group>"; };
+		90FBABD524150D450015128C /* end-sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "end-sound.mp3"; sourceTree = "<group>"; };
+		90FBABD724151B610015128C /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		90FBABD9241531D90015128C /* kansei.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = kansei.mp3; sourceTree = "<group>"; };
 		A6FBD38ACB95842E0644FA45 /* Pods-insuubunkaiUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-insuubunkaiUITests.debug.xcconfig"; path = "Target Support Files/Pods-insuubunkaiUITests/Pods-insuubunkaiUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B015ADC695DD64903560A44A /* Pods_insuubunkaiTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_insuubunkaiTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBC3510DEE53A43B27F41A0B /* Pods-insuubunkaiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-insuubunkaiTests.release.xcconfig"; path = "Target Support Files/Pods-insuubunkaiTests/Pods-insuubunkaiTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -155,8 +167,14 @@
 				90E52C9122F2A80500E5CA94 /* Main.storyboard */,
 				90E52C8F22F2A80500E5CA94 /* ViewController.swift */,
 				90E52CBB22F2AEC100E5CA94 /* View2ViewController.swift */,
+				90FBABCF2414969E0015128C /* View3ViewController.swift */,
+				90FBABD724151B610015128C /* ResultViewController.swift */,
+				90FBABD12414D5FA0015128C /* ready-sound.mp3 */,
+				90FBABD32414D6060015128C /* start-sound.mp3 */,
+				90FBABD524150D450015128C /* end-sound.mp3 */,
 				90D2991F23029D0000290851 /* Quiz-Correct.mp3 */,
 				90D2992123029D3400290851 /* incorrect1.mp3 */,
+				90FBABD9241531D90015128C /* kansei.mp3 */,
 				90E8DCFA22FFEE7A0064816D /* UIViewExtension.swift */,
 				90E52CBD22F82AAE00E5CA94 /* CollectionViewCell1CollectionViewCell.swift */,
 				90E52C9422F2A80600E5CA94 /* Assets.xcassets */,
@@ -294,7 +312,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				90E52C9822F2A80600E5CA94 /* LaunchScreen.storyboard in Resources */,
+				90FBABDA241531D90015128C /* kansei.mp3 in Resources */,
+				90FBABD42414D6060015128C /* start-sound.mp3 in Resources */,
 				90E52C9522F2A80600E5CA94 /* Assets.xcassets in Resources */,
+				90FBABD624150D450015128C /* end-sound.mp3 in Resources */,
+				90FBABD22414D5FA0015128C /* ready-sound.mp3 in Resources */,
 				90D2992223029D3400290851 /* incorrect1.mp3 in Resources */,
 				90D2992023029D0000290851 /* Quiz-Correct.mp3 in Resources */,
 				90E52C9322F2A80500E5CA94 /* Main.storyboard in Resources */,
@@ -413,9 +435,11 @@
 			files = (
 				90E8DCFB22FFEE7A0064816D /* UIViewExtension.swift in Sources */,
 				90E52C9022F2A80500E5CA94 /* ViewController.swift in Sources */,
+				90FBABD824151B610015128C /* ResultViewController.swift in Sources */,
 				90E52CBE22F82AAE00E5CA94 /* CollectionViewCell1CollectionViewCell.swift in Sources */,
 				90E52CBC22F2AEC100E5CA94 /* View2ViewController.swift in Sources */,
 				90E52C8E22F2A80500E5CA94 /* AppDelegate.swift in Sources */,
+				90FBABD02414969E0015128C /* View3ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

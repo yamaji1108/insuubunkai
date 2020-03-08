@@ -22,9 +22,10 @@ class ViewController: UIViewController {
     //ハイスコア管理
     let ud = UserDefaults.standard
     var solveCount1 = 0
+    var time1 = 0
     
     @IBOutlet weak var highscoreLabel: UILabel!
-    
+    @IBOutlet weak var newrecordLabel: UILabel!    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,18 +50,28 @@ class ViewController: UIViewController {
         
         //保存済みの情報を取得
         var highscore1 = ud.integer(forKey: "highscore")
+        var bestrecord = ud.integer(forKey: "bestrecord")
         
         //元の解いた数に今解いた数を足す
         highscore1 = highscore1 + solveCount1
         
+        //新しいタイムが保持記録よりも短い場合は、それを最高記録とする
+        if (time1 < bestrecord) {
+            bestrecord = time1
+        }
+        
         //取得した情報をuserdefaultのインスタンスに格納
         ud.set(highscore1 , forKey: "highscore")
+        ud.set(bestrecord , forKey: "bestrecord")
         
         //端末に情報を保存
         ud.synchronize()
         
         //画面にハイスコアを表示
-        highscoreLabel.text = "因数分解した数： " + String(highscore1) + " 問"
+        highscoreLabel.text = "今まで解いた数： " + String(highscore1) + " 問"
+        
+        //画面にタイムを表示
+        newrecordLabel.text = "あなたのTA記録： " + String(time1) + " 秒"
         
     }
     
@@ -68,21 +79,31 @@ class ViewController: UIViewController {
     // ①セグエ実行前処理
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
-        // ②Segueの識別子確認
+        // ②Segueの識別子確認（view2の遷移の時）
         if segue.identifier == "toSecond" {
-
             // ③遷移先ViewCntrollerの取得
             let secondView = segue.destination as! View2ViewController
-
             // ④値の設定
             secondView.highscore2 = ud.integer(forKey: "highscore")
         }
+        //②Segueの識別子確認（view3の遷移の時）
+        else if (segue.identifier == "toThird") {
+            // ③遷移先ViewCntrollerの取得
+            let thirdView = segue.destination as! View3ViewController
+            // ④値の設定
+            thirdView.highscore3 = ud.integer(forKey: "highscore")
+        }
     }
     
+    //STARTボタンを押した時のアクション（view2への遷移）
     @IBAction func startAction(_ sender: UIButton) {
-
         performSegue(withIdentifier: "toSecond", sender: nil)
-
+    }
+    
+    //タイムアタックを押した時のアクション（view3への遷移の時）
+    @IBAction func timeattackAction(_ sender: UIButton) {
+        performSegue(withIdentifier: "toThird", sender: nil)
+        
     }
     
     
