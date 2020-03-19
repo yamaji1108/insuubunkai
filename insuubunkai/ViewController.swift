@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMobileAds
+import NCMB
 
 class ViewController: UIViewController {
     
@@ -18,15 +19,18 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var startButton: UIButton!
     
+    @IBOutlet weak var highscoreLabel: UILabel!
+    @IBOutlet weak var newrecordLabel: UILabel!    
+
+    @IBOutlet weak var levelSeg: UISegmentedControl!
     
     //ハイスコア管理
     let ud = UserDefaults.standard
     var solveCount1 = 0
-    var time1 = 0
+    var time1 = 1000
+    var username = "user1"
     
-    @IBOutlet weak var highscoreLabel: UILabel!
-    @IBOutlet weak var newrecordLabel: UILabel!    
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -48,31 +52,37 @@ class ViewController: UIViewController {
         
         self.view.addSubview(admobView)
         
+        //bestrecordの初期値は1000とする
+        ud.register(defaults: ["bestrecord": 1000])
+        
         //保存済みの情報を取得
-        var highscore1 = ud.integer(forKey: "highscore")
+        var totalscore = ud.integer(forKey: "totalscore")
         var bestrecord = ud.integer(forKey: "bestrecord")
         
         //元の解いた数に今解いた数を足す
-        highscore1 = highscore1 + solveCount1
+        totalscore = totalscore + solveCount1
         
         //新しいタイムが保持記録よりも短い場合は、それを最高記録とする
-        if (time1 < bestrecord) {
-            bestrecord = time1
-        }
+//        if (time1 < bestrecord) {
+//            bestrecord = time1
+//        }
         
         //取得した情報をuserdefaultのインスタンスに格納
-        ud.set(highscore1 , forKey: "highscore")
+        ud.set(totalscore , forKey: "totalscore")
         ud.set(bestrecord , forKey: "bestrecord")
         
         //端末に情報を保存
         ud.synchronize()
         
         //画面にハイスコアを表示
-        highscoreLabel.text = "今まで解いた数： " + String(highscore1) + " 問"
+        highscoreLabel.text = "今まで解いた数： " + String(totalscore) + " 問"
         
         //画面にタイムを表示
-        newrecordLabel.text = "あなたのTA記録： " + String(time1) + " 秒"
-        
+        if(bestrecord == 1000) {
+            newrecordLabel.text = "あなたのTA記録：   秒"
+        } else {
+            newrecordLabel.text = "あなたのTA記録： " + String(bestrecord) + " 秒"
+        }
     }
     
     
@@ -85,13 +95,17 @@ class ViewController: UIViewController {
             let secondView = segue.destination as! View2ViewController
             // ④値の設定
             secondView.highscore2 = ud.integer(forKey: "highscore")
+            secondView.level = levelSeg.selectedSegmentIndex
         }
         //②Segueの識別子確認（view3の遷移の時）
         else if (segue.identifier == "toThird") {
             // ③遷移先ViewCntrollerの取得
             let thirdView = segue.destination as! View3ViewController
             // ④値の設定
-            thirdView.highscore3 = ud.integer(forKey: "highscore")
+            thirdView.bestrecord = ud.integer(forKey: "bestrecord")
+            thirdView.level = levelSeg.selectedSegmentIndex
+            print("levelSeg.selectedSegmentIndexは")
+            print(levelSeg.selectedSegmentIndex)
         }
     }
     
@@ -100,13 +114,17 @@ class ViewController: UIViewController {
         performSegue(withIdentifier: "toSecond", sender: nil)
     }
     
-    //タイムアタックを押した時のアクション（view3への遷移の時）
+    //タイムアタックを押した時のアクション（view3への遷移）
     @IBAction func timeattackAction(_ sender: UIButton) {
         performSegue(withIdentifier: "toThird", sender: nil)
         
     }
     
+    //ランキングボタンを押した時のアクション（rankingViewへの遷移）
     
+    @IBAction func torankingAction(_ sender: UIButton) {
+        performSegue(withIdentifier: "toRanking", sender: nil)
+    }
     
 
 }

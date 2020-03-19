@@ -13,9 +13,6 @@ import GoogleMobileAds
 
 class View3ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,GADInterstitialDelegate {
     
-    //トップ画面から受け取ったデータ
-    var highscore3 = 0
-    
     //テスト用ラベル
     @IBOutlet weak var testLabel: UILabel!
     
@@ -81,12 +78,16 @@ class View3ViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     @IBOutlet weak var cat10Image: UIImageView!
     
+    //トップ画面から受け取ったデータ
+    var bestrecord = 0
+    var level:Int = 0
     
     var audioPlayerInstance1 : AVAudioPlayer! = nil
     var audioPlayerInstance2 : AVAudioPlayer! = nil
     var audioPlayerInstance3 : AVAudioPlayer! = nil
     var audioPlayerInstance4 : AVAudioPlayer! = nil
     var audioPlayerInstance5 : AVAudioPlayer! = nil
+    
     
     var leftValue: Int = 0
     var rightValue: Int = 0
@@ -108,6 +109,7 @@ class View3ViewController: UIViewController, UICollectionViewDataSource, UIColle
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        print("levelは" + String(level))
         
         //createAndLoadInterstitialメソッドの呼び出し
         interstitial = createAndLoadInterstitial()
@@ -119,7 +121,6 @@ class View3ViewController: UIViewController, UICollectionViewDataSource, UIColle
         })
         
         let layout = UICollectionViewFlowLayout()
-        
         
         //初回読み込み時の処理
         if(solveCount == 0) {
@@ -257,10 +258,21 @@ class View3ViewController: UIViewController, UICollectionViewDataSource, UIColle
         inputLabel3.text = ""
         inputLabel4.text = ""
         
-        let array: [Int] = [-15,-14,-13,-12,-11,-10,-9,-8,-7,-6,-5,-4,-3,-2,-1,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+        //難易度がNORMALなら-9〜9、HARDなら-15〜15
+        let array1: [Int] = [-9,-8,-7,-6,-5,-4,-3,-2,-1,1,2,3,4,5,6,7,8,9]
+        let array2: [Int] = [-15,-14,-13,-12,-11,-10,-9,-8,-7,-6,-5,-4,-3,-2,-1,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
         
-        var ran1 = array.randomElement()!
-        var ran2 = array.randomElement()!
+        var ran1 = 0
+        var ran2 = 0
+        
+        if (level == 0) {
+            ran1 = array1.randomElement()!
+            ran2 = array1.randomElement()!
+        } else if (level == 1) {
+            ran1 = array2.randomElement()!
+            ran2 = array2.randomElement()!
+        }
+        
         
         if (ran1 == 15) && (ran2 == 15) {
             ran2 = ran2 - 1
@@ -770,17 +782,13 @@ class View3ViewController: UIViewController, UICollectionViewDataSource, UIColle
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         // ②Segueの識別子確認
-        if segue.identifier == "fromThirdtoFirst" {
-            
-            // ③遷移先ViewCntrollerの取得
-            let firstView = segue.destination as! ViewController
-            
-            // ④値の設定
-            firstView.solveCount1 = solveCount
-        } else if segue.identifier == "toResult" {
+        if segue.identifier == "toResult" {
             let resultView = segue.destination as! ResultViewController
-            resultView.timeInt = self.timeCount
             
+            resultView.solveCount = self.solveCount
+            resultView.timeInt = self.timeCount
+            resultView.bestrecord = self.bestrecord
+            resultView.level = self.level
         }
     }
     
