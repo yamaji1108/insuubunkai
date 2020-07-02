@@ -101,7 +101,7 @@ class View3ViewController: UIViewController, UICollectionViewDataSource, UIColle
     var interstitial: GADInterstitial!
     
     // 広告ユニットID
-    let AdMobInID = "ca-app-pub-7071770782912768/7839053308"
+    let AdMobInID = "ca-app-pub-7071770782912768/1190453008"
     // テスト用広告ユニットID
     let TESTIn_ID = "ca-app-pub-3940256099942544/4411468910"
     
@@ -707,8 +707,8 @@ class View3ViewController: UIViewController, UICollectionViewDataSource, UIColle
 //                    }
 //                }
                 
-                //30問解き終わったら終了
-                if (self.solveCount == 3) {
+                //10問解き終わったら終了
+                if (self.solveCount == 10) {
                     //終了男性の登録
                     self.sokomadeImage.image = UIImage(named: "sokomade")
                     
@@ -736,8 +736,16 @@ class View3ViewController: UIViewController, UICollectionViewDataSource, UIColle
                         // imageを削除
                         self.sokomadeImage.removeFromSuperview()
                         
+//                        //インターステイシャル広告の読み込み
+//                        if self.interstitial.isReady {
+//                            self.interstitial.present(fromRootViewController: self)
+//                        } else {
+//                            print("Ad wasn't ready")
+//                        }
+                        
                         //結果画面に遷移
                         self.performSegue(withIdentifier: "toResult", sender: nil)
+                        
                     }
                     
                 } else {

@@ -19,6 +19,8 @@ class RankingViewController: UIViewController, UICollectionViewDataSource, UICol
     
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var backConstraint: NSLayoutConstraint!
+    
     var normaluser1 = ""
     var normaluser2 = ""
     var normaluser3 = ""
@@ -47,7 +49,7 @@ class RankingViewController: UIViewController, UICollectionViewDataSource, UICol
         super.viewDidLoad()
         
         
-        // デバイスによってセルノサイズヲ分岐
+        // デバイスによってセルのサイズを分岐
         let layout = UICollectionViewFlowLayout()
         if UIDevice.current.userInterfaceIdiom == .phone {
             // 使用デバイスがiPhoneの場合
@@ -60,26 +62,27 @@ class RankingViewController: UIViewController, UICollectionViewDataSource, UICol
             // 使用デバイスがiPadの場合
             // collectionの制約を変更
             let myAppBoundSize: CGSize = UIScreen.main.bounds.size
+            backConstraint.constant = backConstraint.constant * 1.5
             leftConstraint.constant = myAppBoundSize.width * 0.35
-            bottomConstraint.constant = myAppBoundSize.height * 0.25
+            rightConstraint.constant = myAppBoundSize.width * 0.35
         }
         
         
         //難易度がNORMALであるオブジェクトを検索するクエリの作成
         let query1 = NCMBQuery.init(className: "record")!
-        query1.whereKey("level", equalTo: "NORMAL")
+        query1.whereKey("level", equalTo: 0)
         
         //難易度がHARDであるオブジェクトを検索するクエリの作成
         let query2 = NCMBQuery.init(className: "record")!
-        query2.whereKey("level", equalTo: "HARD")
+        query2.whereKey("level", equalTo: 1)
         
-        // 昇順
+        // 昇順（bestrecordが低いものから順にソート）
         query1.order (byAscending: "bestrecord")
         query2.order (byAscending: "bestrecord")
         
-        //取得件数の指定
-        query1.limit = 5;
-        query2.limit = 5;
+//        //取得件数の指定
+//        query1.limit = 5;
+//        query2.limit = 5;
         
         //検索(normal)の実行
         query1.findObjectsInBackground({(results, error) in
@@ -88,12 +91,18 @@ class RankingViewController: UIViewController, UICollectionViewDataSource, UICol
             } else {
                 var res = results as! [NCMBObject]
                 
-                //ユーザー名をせ取得
+                //ユーザー名を取得
                 self.normaluser1 = String(describing:res[0].object(forKey: "username") ?? "taro")
                 self.normaluser2 = String(describing:res[1].object(forKey: "username") ?? "taro")
                 self.normaluser3 = String(describing:res[2].object(forKey: "username") ?? "taro")
                 self.normaluser4 = String(describing:res[3].object(forKey: "username") ?? "taro")
                 self.normaluser5 = String(describing:res[4].object(forKey: "username") ?? "taro")
+                
+                print("normaluser1は" + self.normaluser1)
+                print("normaluser2は" + self.normaluser2)
+                print("normaluser3は" + self.normaluser3)
+                print("normaluser4は" + self.normaluser4)
+                print("normaluser5は" + self.normaluser5)
 
                 //最高記録を取得
                 self.nu1Record = String(describing:res[0].object(forKey: "bestrecord") ?? "1000")
@@ -112,12 +121,18 @@ class RankingViewController: UIViewController, UICollectionViewDataSource, UICol
             } else {
                 var res = results as! [NCMBObject]
                 
-                //ユーザー名をせ取得
+                //ユーザー名を取得
                 self.harduser1 = String(describing:res[0].object(forKey: "username") ?? "taro")
                 self.harduser2 = String(describing:res[1].object(forKey: "username") ?? "taro")
                 self.harduser3 = String(describing:res[2].object(forKey: "username") ?? "taro")
                 self.harduser4 = String(describing:res[3].object(forKey: "username") ?? "taro")
                 self.harduser5 = String(describing:res[4].object(forKey: "username") ?? "taro")
+                
+                print("harduser1は" + self.harduser1)
+                print("harduser2は" + self.harduser2)
+                print("harduser3は" + self.harduser3)
+                print("harduser4は" + self.harduser4)
+                print("harduser5は" + self.harduser5)
                 
                 //最高記録を取得
                 self.hu1Record = String(describing:res[0].object(forKey: "bestrecord") ?? "1000")
@@ -149,66 +164,70 @@ class RankingViewController: UIViewController, UICollectionViewDataSource, UICol
         
         //cellLabel1.textColor = UIColor.white
         
-        //セルラベルにユーザー名と最高記録をランキング形式で表示
-        if (String(indexPath.row) == "0") {
-            cellLabel1.text = "NORMAL"
-            let color = UIColor(red: 24/255, green: 24/255, blue: 120/255, alpha: 90/100)
-            cellLabel1.textColor = color
-            cellLabel1.font = UIFont.boldSystemFont(ofSize: 22)
-        } else if (String(indexPath.row) == "1") {
-            cellLabel1.text = ""
-        } else if (String(indexPath.row) == "2") {
-            cellLabel1.text = normaluser1
-        } else if (String(indexPath.row) == "3") {
-            cellLabel1.text = nu1Record
-        } else if (String(indexPath.row) == "4") {
-            cellLabel1.text = normaluser2
-        } else if (String(indexPath.row) == "5") {
-            cellLabel1.text = nu2Record
-        } else if (String(indexPath.row) == "6") {
-            cellLabel1.text = normaluser3
-        } else if (String(indexPath.row) == "7") {
-            cellLabel1.text = nu3Record
-        } else if (String(indexPath.row) == "8") {
-            cellLabel1.text = normaluser4
-        } else if (String(indexPath.row) == "9") {
-            cellLabel1.text = nu4Record
-        } else if (String(indexPath.row) == "10") {
-            cellLabel1.text = normaluser5
-        } else if (String(indexPath.row) == "11") {
-            cellLabel1.text = nu5Record
-        } else if (String(indexPath.row) == "12") {
-            cellLabel1.text = "HARD"
-            let color = UIColor(red: 200/255, green: 0/255, blue: 10/255, alpha: 90/100)
-            cellLabel1.textColor = color
-            cellLabel1.font = UIFont.boldSystemFont(ofSize: 22)
-        } else if (String(indexPath.row) == "13") {
-            cellLabel1.text = ""
-        } else if (String(indexPath.row) == "14") {
-            cellLabel1.text = harduser1
-        } else if (String(indexPath.row) == "15") {
-            cellLabel1.text = hu1Record
-        } else if (String(indexPath.row) == "16") {
-            cellLabel1.text = harduser2
-        } else if (String(indexPath.row) == "17") {
-            cellLabel1.text = hu2Record
-        } else if (String(indexPath.row) == "18") {
-            cellLabel1.text = harduser3
-        } else if (String(indexPath.row) == "19") {
-            cellLabel1.text = hu3Record
-        } else if (String(indexPath.row) == "20") {
-            cellLabel1.text = harduser4
-        } else if (String(indexPath.row) == "21") {
-            cellLabel1.text = hu4Record
-        } else if (String(indexPath.row) == "22") {
-            cellLabel1.text = harduser5
-        } else if (String(indexPath.row) == "23") {
-            cellLabel1.text = hu5Record
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+        
+            //セルラベルにユーザー名と最高記録をランキング形式で表示
+            if (String(indexPath.row) == "0") {
+                cellLabel1.text = "NORMAL"
+                let color = UIColor(red: 24/255, green: 24/255, blue: 120/255, alpha: 90/100)
+                cellLabel1.textColor = color
+                cellLabel1.font = UIFont.boldSystemFont(ofSize: 22)
+            } else if (String(indexPath.row) == "1") {
+                cellLabel1.text = ""
+            } else if (String(indexPath.row) == "2") {
+                cellLabel1.text = self.normaluser1
+            } else if (String(indexPath.row) == "3") {
+                cellLabel1.text = self.nu1Record + "秒"
+            } else if (String(indexPath.row) == "4") {
+                cellLabel1.text = self.normaluser2
+            } else if (String(indexPath.row) == "5") {
+                cellLabel1.text = self.nu2Record + "秒"
+            } else if (String(indexPath.row) == "6") {
+                cellLabel1.text = self.normaluser3
+            } else if (String(indexPath.row) == "7") {
+                cellLabel1.text = self.nu3Record + "秒"
+            } else if (String(indexPath.row) == "8") {
+                cellLabel1.text = self.normaluser4
+            } else if (String(indexPath.row) == "9") {
+                cellLabel1.text = self.nu4Record + "秒"
+            } else if (String(indexPath.row) == "10") {
+                cellLabel1.text = self.normaluser5
+            } else if (String(indexPath.row) == "11") {
+                cellLabel1.text = self.nu5Record + "秒"
+            } else if (String(indexPath.row) == "12") {
+                cellLabel1.text = "HARD"
+                let color = UIColor(red: 200/255, green: 0/255, blue: 10/255, alpha: 90/100)
+                cellLabel1.textColor = color
+                cellLabel1.font = UIFont.boldSystemFont(ofSize: 22)
+            } else if (String(indexPath.row) == "13") {
+                cellLabel1.text = ""
+            } else if (String(indexPath.row) == "14") {
+                cellLabel1.text = self.harduser1
+            } else if (String(indexPath.row) == "15") {
+                cellLabel1.text = self.hu1Record + "秒"
+            } else if (String(indexPath.row) == "16") {
+                cellLabel1.text = self.harduser2
+            } else if (String(indexPath.row) == "17") {
+                cellLabel1.text = self.hu2Record + "秒"
+            } else if (String(indexPath.row) == "18") {
+                cellLabel1.text = self.harduser3
+            } else if (String(indexPath.row) == "19") {
+                cellLabel1.text = self.hu3Record + "秒"
+            } else if (String(indexPath.row) == "20") {
+                cellLabel1.text = self.harduser4
+            } else if (String(indexPath.row) == "21") {
+                cellLabel1.text = self.hu4Record + "秒"
+            } else if (String(indexPath.row) == "22") {
+                cellLabel1.text = self.harduser5
+            } else if (String(indexPath.row) == "23") {
+                cellLabel1.text = self.hu5Record + "秒"
+            }
+            
+            //セルの背景色を設定する。
+    //        cell.backgroundColor = UIColor(red: 211/255,green: 237/255,blue: 251/255,alpha: 90/100)
         }
-        
-        //セルの背景色を設定する。
-//        cell.backgroundColor = UIColor(red: 211/255,green: 237/255,blue: 251/255,alpha: 90/100)
-        
+            
+            
         return cell
     }
     
