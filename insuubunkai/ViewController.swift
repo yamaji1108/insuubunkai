@@ -6,6 +6,8 @@
 //  Copyright © 2019 山田拓也. All rights reserved.
 //
 
+// developブランチで編集を加えた。テスト
+
 import UIKit
 import GoogleMobileAds
 import NCMB
