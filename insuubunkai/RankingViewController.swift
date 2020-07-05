@@ -12,14 +12,15 @@ import NCMB
 class RankingViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    
     @IBOutlet weak var leftConstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var rightConstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var backConstraint: NSLayoutConstraint!
+    
+    // レイアウト設定　UIEdgeInsets については下記の参考図を参照。
+    private let sectionInsets = UIEdgeInsets(top: 10.0, left: 2.0, bottom: 2.0, right: 2.0)
+    // 1行あたりのアイテム数
+    private let itemsPerRow: CGFloat = 2
     
     var normaluser1 = ""
     var normaluser2 = ""
@@ -51,14 +52,17 @@ class RankingViewController: UIViewController, UICollectionViewDataSource, UICol
         
         // デバイスによってセルのサイズを分岐
         let layout = UICollectionViewFlowLayout()
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            // 使用デバイスがiPhoneの場合
-            layout.minimumLineSpacing = 5
-            let cellWidth = floor(collectionView.bounds.width * 0.48)
-            let cellHight = floor(cellWidth * 0.3)
-            layout.itemSize = CGSize(width: cellWidth, height: cellHight)
-            collectionView.collectionViewLayout = layout
-        } else if UIDevice.current.userInterfaceIdiom == .pad {
+//        if UIDevice.current.userInterfaceIdiom == .phone {
+//            // 使用デバイスがiPhoneの場合
+//            //layout.minimumLineSpacing = 5
+//            let cellWidth = floor(collectionView.bounds.width * 0.45)
+//            let cellHight = floor(cellWidth * 0.3)
+//            layout.itemSize = CGSize(width: cellWidth, height: cellHight)
+//            collectionView.collectionViewLayout = layout
+//        }
+        
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
             // 使用デバイスがiPadの場合
             // collectionの制約を変更
             let myAppBoundSize: CGSize = UIScreen.main.bounds.size
@@ -150,11 +154,21 @@ class RankingViewController: UIViewController, UICollectionViewDataSource, UICol
         return 24 // 表示するセルの数
     }
     
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-//        let width: CGFloat = view.frame.width / 2 - 4
-//        let height: CGFloat = width / 3
-//        return CGSize(width: width, height: height)
-//    }
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
+        let availableWidth = view.frame.width - paddingSpace
+        let widthPerItem = availableWidth / itemsPerRow
+        return CGSize(width: widthPerItem, height: widthPerItem + 42)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return sectionInsets
+    }
+    
+    // セルの行間の設定
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10.0
+    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell( withReuseIdentifier: "cell", for: indexPath)

@@ -16,7 +16,7 @@
         <!--Ranking View Controller-->
         <scene sceneID="Nhs-dT-MuN">
             <objects>
-                <viewController id="7wg-EJ-I4d" customClass="RankingViewController" customModule="insuubunkai" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="crossDissolve" id="7wg-EJ-I4d" customClass="RankingViewController" customModule="insuubunkai" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hn2-7u-Tyy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -36,9 +36,9 @@
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="x04-q7-vhK">
-                                <rect key="frame" x="30" y="265" width="354" height="349.5"/>
+                                <rect key="frame" x="20" y="265" width="374" height="349.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="62L-yv-hV5">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="62L-yv-hV5">
                                     <size key="itemSize" width="116" height="62"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -82,8 +82,8 @@
                             <constraint firstItem="aSF-nH-ELz" firstAttribute="centerY" secondItem="hn2-7u-Tyy" secondAttribute="centerY" constant="260" id="iGC-UU-3Ax"/>
                             <constraint firstItem="aSF-nH-ELz" firstAttribute="centerX" secondItem="hn2-7u-Tyy" secondAttribute="centerX" id="osO-lB-Ucm"/>
                             <constraint firstItem="aSF-nH-ELz" firstAttribute="top" secondItem="x04-q7-vhK" secondAttribute="bottom" constant="40" id="wO0-Mq-QEy"/>
-                            <constraint firstItem="7JJ-m8-P72" firstAttribute="trailing" secondItem="x04-q7-vhK" secondAttribute="trailing" constant="30" id="yaH-8l-sap"/>
-                            <constraint firstItem="x04-q7-vhK" firstAttribute="leading" secondItem="7JJ-m8-P72" secondAttribute="leading" constant="30" id="yom-ot-ZGd"/>
+                            <constraint firstItem="7JJ-m8-P72" firstAttribute="trailing" secondItem="x04-q7-vhK" secondAttribute="trailing" constant="20" id="yaH-8l-sap"/>
+                            <constraint firstItem="x04-q7-vhK" firstAttribute="leading" secondItem="7JJ-m8-P72" secondAttribute="leading" constant="20" id="yom-ot-ZGd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7JJ-m8-P72"/>
                     </view>
@@ -103,13 +103,13 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="insuubunkai" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="crossDissolve" id="BYZ-38-t0r" customClass="ViewController" customModule="insuubunkai" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ひたすら因数分解" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O6n-Li-Evc">
-                                <rect key="frame" x="7" y="182" width="400" height="58.5"/>
+                                <rect key="frame" x="40.5" y="186" width="333.5" height="50"/>
                                 <fontDescription key="fontDescription" name="aoyagireisyosimo2" family="aoyagireisyosimo2" pointSize="50"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.90616747359154926" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -128,7 +128,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8yG-Gw-CIK">
-                                <rect key="frame" x="174" y="280.5" width="66" height="33.5"/>
+                                <rect key="frame" x="174" y="276" width="66" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -142,7 +142,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mEA-E4-lyH">
-                                <rect key="frame" x="174" y="334" width="66" height="33.5"/>
+                                <rect key="frame" x="174" y="329.5" width="66" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -211,7 +211,7 @@
         <!--View2 View Controller-->
         <scene sceneID="hxz-jw-P5Y">
             <objects>
-                <viewController id="RfO-Z7-FR2" customClass="View2ViewController" customModule="insuubunkai" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="partialCurl" id="RfO-Z7-FR2" customClass="View2ViewController" customModule="insuubunkai" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DEY-vC-YMH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -545,7 +545,7 @@
         <!--View3 View Controller-->
         <scene sceneID="ppD-2Z-nkj">
             <objects>
-                <viewController id="OIN-wr-wYM" customClass="View3ViewController" customModule="insuubunkai" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="partialCurl" id="OIN-wr-wYM" customClass="View3ViewController" customModule="insuubunkai" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="j3U-Y6-TOa">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -898,7 +898,7 @@
         <!--Result View Controller-->
         <scene sceneID="GFA-3l-Kby">
             <objects>
-                <viewController id="Vo8-gB-vbF" customClass="ResultViewController" customModule="insuubunkai" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="crossDissolve" id="Vo8-gB-vbF" customClass="ResultViewController" customModule="insuubunkai" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="n4M-Zy-eTx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -51,6 +51,9 @@ class ResultViewController: UIViewController, GADInterstitialDelegate {
         //createAndLoadInterstitialメソッドの呼び出し
         interstitial = createAndLoadInterstitial()
         
+        //ボタン連打の禁止
+        registerButton.isExclusiveTouch = true
+        
         if UIDevice.current.userInterfaceIdiom == .pad {
             // 使用デバイスがiPadの場合
             // collectionの制約を変更

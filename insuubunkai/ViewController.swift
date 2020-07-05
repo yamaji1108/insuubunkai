@@ -106,8 +106,6 @@ class ViewController: UIViewController {
             // ④値の設定
             thirdView.bestrecord = ud.integer(forKey: "bestrecord")
             thirdView.level = levelSeg.selectedSegmentIndex
-//            print("levelSeg.selectedSegmentIndexは")
-//            print(levelSeg.selectedSegmentIndex)
         }
     }
     
