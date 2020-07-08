@@ -46,6 +46,9 @@ class RankingViewController: UIViewController, UICollectionViewDataSource, UICol
     var hu4Record = ""
     var hu5Record = ""
     
+    let dispatchGroup = DispatchGroup()
+    let queue1 = DispatchQueue(label: "キュー1")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -60,7 +63,6 @@ class RankingViewController: UIViewController, UICollectionViewDataSource, UICol
 //            layout.itemSize = CGSize(width: cellWidth, height: cellHight)
 //            collectionView.collectionViewLayout = layout
 //        }
-        
         
         if UIDevice.current.userInterfaceIdiom == .pad {
             // 使用デバイスがiPadの場合
@@ -88,66 +90,70 @@ class RankingViewController: UIViewController, UICollectionViewDataSource, UICol
 //        query1.limit = 5;
 //        query2.limit = 5;
         
-        //検索(normal)の実行
-        query1.findObjectsInBackground({(results, error) in
-            if error != nil {
-                print("error", error ?? "")
-            } else {
-                var res = results as! [NCMBObject]
-                
-                //ユーザー名を取得
-                self.normaluser1 = String(describing:res[0].object(forKey: "username") ?? "taro")
-                self.normaluser2 = String(describing:res[1].object(forKey: "username") ?? "taro")
-                self.normaluser3 = String(describing:res[2].object(forKey: "username") ?? "taro")
-                self.normaluser4 = String(describing:res[3].object(forKey: "username") ?? "taro")
-                self.normaluser5 = String(describing:res[4].object(forKey: "username") ?? "taro")
-                
-                print("normaluser1は" + self.normaluser1)
-                print("normaluser2は" + self.normaluser2)
-                print("normaluser3は" + self.normaluser3)
-                print("normaluser4は" + self.normaluser4)
-                print("normaluser5は" + self.normaluser5)
+        
+        queue1.async(group: dispatchGroup) {
+            //検索(normal)の実行
+            query1.findObjectsInBackground({(results, error) in
+                if error != nil {
+                    print("error", error ?? "")
+                } else {
+                    var res = results as! [NCMBObject]
+                    
+                    //ユーザー名を取得
+                    self.normaluser1 = String(describing:res[0].object(forKey: "username") ?? "taro")
+                    self.normaluser2 = String(describing:res[1].object(forKey: "username") ?? "taro")
+                    self.normaluser3 = String(describing:res[2].object(forKey: "username") ?? "taro")
+                    self.normaluser4 = String(describing:res[3].object(forKey: "username") ?? "taro")
+                    self.normaluser5 = String(describing:res[4].object(forKey: "username") ?? "taro")
+                    
+                    print("normaluser1は" + self.normaluser1)
+                    print("normaluser2は" + self.normaluser2)
+                    print("normaluser3は" + self.normaluser3)
+                    print("normaluser4は" + self.normaluser4)
+                    print("normaluser5は" + self.normaluser5)
 
-                //最高記録を取得
-                self.nu1Record = String(describing:res[0].object(forKey: "bestrecord") ?? "1000")
-                self.nu2Record = String(describing:res[1].object(forKey: "bestrecord") ?? "1000")
-                self.nu3Record = String(describing:res[2].object(forKey: "bestrecord") ?? "1000")
-                self.nu4Record = String(describing:res[3].object(forKey: "bestrecord") ?? "1000")
-                self.nu5Record = String(describing:res[4].object(forKey: "bestrecord") ?? "1000")
-                
-            }
-        })
+                    //最高記録を取得
+                    self.nu1Record = String(describing:res[0].object(forKey: "bestrecord") ?? "1000")
+                    self.nu2Record = String(describing:res[1].object(forKey: "bestrecord") ?? "1000")
+                    self.nu3Record = String(describing:res[2].object(forKey: "bestrecord") ?? "1000")
+                    self.nu4Record = String(describing:res[3].object(forKey: "bestrecord") ?? "1000")
+                    self.nu5Record = String(describing:res[4].object(forKey: "bestrecord") ?? "1000")
+                    
+                }
+            })
+        }
         
-        //検索(hard)の実行
-        query2.findObjectsInBackground({(results, error) in
-            if error != nil {
-                print("error", error ?? "")
-            } else {
-                var res = results as! [NCMBObject]
-                
-                //ユーザー名を取得
-                self.harduser1 = String(describing:res[0].object(forKey: "username") ?? "taro")
-                self.harduser2 = String(describing:res[1].object(forKey: "username") ?? "taro")
-                self.harduser3 = String(describing:res[2].object(forKey: "username") ?? "taro")
-                self.harduser4 = String(describing:res[3].object(forKey: "username") ?? "taro")
-                self.harduser5 = String(describing:res[4].object(forKey: "username") ?? "taro")
-                
-                print("harduser1は" + self.harduser1)
-                print("harduser2は" + self.harduser2)
-                print("harduser3は" + self.harduser3)
-                print("harduser4は" + self.harduser4)
-                print("harduser5は" + self.harduser5)
-                
-                //最高記録を取得
-                self.hu1Record = String(describing:res[0].object(forKey: "bestrecord") ?? "1000")
-                self.hu2Record = String(describing:res[1].object(forKey: "bestrecord") ?? "1000")
-                self.hu3Record = String(describing:res[2].object(forKey: "bestrecord") ?? "1000")
-                self.hu4Record = String(describing:res[3].object(forKey: "bestrecord") ?? "1000")
-                self.hu5Record = String(describing:res[4].object(forKey: "bestrecord") ?? "1000")
-                
-            }
-        })
-        
+        queue1.async(group: dispatchGroup) {
+            //検索(hard)の実行
+            query2.findObjectsInBackground({(results, error) in
+                if error != nil {
+                    print("error", error ?? "")
+                } else {
+                    var res = results as! [NCMBObject]
+                    
+                    //ユーザー名を取得
+                    self.harduser1 = String(describing:res[0].object(forKey: "username") ?? "taro")
+                    self.harduser2 = String(describing:res[1].object(forKey: "username") ?? "taro")
+                    self.harduser3 = String(describing:res[2].object(forKey: "username") ?? "taro")
+                    self.harduser4 = String(describing:res[3].object(forKey: "username") ?? "taro")
+                    self.harduser5 = String(describing:res[4].object(forKey: "username") ?? "taro")
+                    
+                    print("harduser1は" + self.harduser1)
+                    print("harduser2は" + self.harduser2)
+                    print("harduser3は" + self.harduser3)
+                    print("harduser4は" + self.harduser4)
+                    print("harduser5は" + self.harduser5)
+                    
+                    //最高記録を取得
+                    self.hu1Record = String(describing:res[0].object(forKey: "bestrecord") ?? "1000")
+                    self.hu2Record = String(describing:res[1].object(forKey: "bestrecord") ?? "1000")
+                    self.hu3Record = String(describing:res[2].object(forKey: "bestrecord") ?? "1000")
+                    self.hu4Record = String(describing:res[3].object(forKey: "bestrecord") ?? "1000")
+                    self.hu5Record = String(describing:res[4].object(forKey: "bestrecord") ?? "1000")
+                    
+                }
+            })
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -170,15 +176,22 @@ class RankingViewController: UIViewController, UICollectionViewDataSource, UICol
         return 10.0
     }
     
+    class ColumnFlowLayout: UICollectionViewFlowLayout {
+        // After invalidateLayouts
+        override func prepare() {
+            super.prepare()
+            self.sectionInset = UIEdgeInsets(top: self.minimumInteritemSpacing, left: 0.0, bottom: 0.0, right: 0.0)
+            self.sectionInsetReference = .fromSafeArea
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell( withReuseIdentifier: "cell", for: indexPath)
         // 表示するセルを登録(先程命名した"cell")
         
         let cellLabel1 = cell.contentView.viewWithTag(1) as! UILabel
         
-        //cellLabel1.textColor = UIColor.white
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+        dispatchGroup.wait(timeout: .now() + 10)
         
             //セルラベルにユーザー名と最高記録をランキング形式で表示
             if (String(indexPath.row) == "0") {
@@ -236,11 +249,6 @@ class RankingViewController: UIViewController, UICollectionViewDataSource, UICol
             } else if (String(indexPath.row) == "23") {
                 cellLabel1.text = self.hu5Record + "秒"
             }
-            
-            //セルの背景色を設定する。
-    //        cell.backgroundColor = UIColor(red: 211/255,green: 237/255,blue: 251/255,alpha: 90/100)
-        }
-            
             
         return cell
     }
