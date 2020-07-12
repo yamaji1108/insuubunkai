@@ -44,6 +44,14 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     @IBOutlet weak var rightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var collectionViewHeightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var collectionViewWidthConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var backTopConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var backBottomConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var nijisikiImage1: UIImageView!
     
     @IBOutlet weak var nijisikiImage2: UIImageView!
@@ -119,16 +127,30 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
         
         if UIDevice.current.userInterfaceIdiom == .phone {
             // 使用デバイスがiPhoneの場合
-            layout.minimumLineSpacing = 20
-            let cellWidth = floor(CollectionView1.bounds.width * 0.26)
+            layout.minimumLineSpacing = 14
+            let cellWidth = floor((self.view.frame.width * 0.75 - 100)/3)
             layout.itemSize = CGSize(width: cellWidth, height: cellWidth)
             CollectionView1.collectionViewLayout = layout
+            collectionViewHeightConstraint.constant = cellWidth * 4 + 52
+            collectionViewWidthConstraint.constant = cellWidth * 3 + 28
+            print("cellWidthは",cellWidth)
         } else if UIDevice.current.userInterfaceIdiom == .pad {
             // 使用デバイスがiPadの場合
-            // collectionの制約を変更
-            let myAppBoundSize: CGSize = UIScreen.main.bounds.size
-            leftConstraint.constant = myAppBoundSize.width * 0.35
-            bottomConstraint.constant = myAppBoundSize.height * 0.25
+            //制約の修正
+            leftConstraint.constant = self.view.frame.width * 0.3
+            backTopConstraint.constant = 50
+            backBottomConstraint.constant = 50
+            
+            layout.minimumLineSpacing = 20
+            let cellWidth = floor((self.view.frame.width * 0.4 - 40)/3)
+            layout.itemSize = CGSize(width: cellWidth, height: cellWidth)
+            CollectionView1.collectionViewLayout = layout
+            collectionViewHeightConstraint.constant = cellWidth * 4 + 60
+            collectionViewWidthConstraint.constant = cellWidth * 3 + 40
+            
+//            let myAppBoundSize: CGSize = UIScreen.main.bounds.size
+//            leftConstraint.constant = myAppBoundSize.width * 0.35
+//            bottomConstraint.constant = myAppBoundSize.height * 0.25
         }
         
         // 解いた数の表示
@@ -250,7 +272,7 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     //インタースティシャル広告を読み込む
     func createAndLoadInterstitial() -> GADInterstitial {
-        var interstitial = GADInterstitial(adUnitID: TESTIn_ID)
+        var interstitial = GADInterstitial(adUnitID: AdMobInID)
         interstitial.delegate = self
         interstitial.load(GADRequest())
         return interstitial
@@ -606,11 +628,12 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
             audioPlayerInstance1.play()
             
             gifImage.image = UIImage(named: "丸（透過）")
+            gifImage.isHidden = false
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 // 1.5秒後に実行する処理
-                // imageを削除
-                self.gifImage.removeFromSuperview()
+                // imageを非表示
+                self.gifImage.isHidden = true
                 self.nijisikiImage1.removeFromSuperview()
                 self.nijisikiImage2.removeFromSuperview()
                 
@@ -657,10 +680,19 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
             // 再生する
             audioPlayerInstance2.play()
             
-            inputLabel1.text = ""
-            inputLabel2.text = ""
-            inputLabel3.text = ""
-            inputLabel4.text = ""
+            gifImage.image = UIImage(named: "バツマーク（手書き）")
+            self.gifImage.isHidden = false
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                // 0.5秒後に実行する処理
+                // imageを非表示
+                self.gifImage.isHidden = true
+                
+                self.inputLabel1.text = ""
+                self.inputLabel2.text = ""
+                self.inputLabel3.text = ""
+                self.inputLabel4.text = ""
+            }
             
         }
     }

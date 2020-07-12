@@ -43,11 +43,11 @@ class ViewController: UIViewController {
         admobView = GADBannerView(adSize:kGADAdSizeBanner)
         
         // 広告の位置調整
-        admobView.frame.origin = CGPoint(x:self.view.frame.width * 0.1, y:self.view.frame.size.height - admobView.frame.height - 25)
+        admobView.frame.origin = CGPoint(x:self.view.frame.width * 0.1, y:self.view.frame.height - admobView.frame.height - 25)
         admobView.frame.size = CGSize(width:self.view.frame.width * 0.8, height:admobView.frame.height)
         
         //テスト時はTEST_ID、本番時はAdMobIDを使用
-        admobView.adUnitID = TEST_ID
+        admobView.adUnitID = AdMobID
         
         admobView.rootViewController = self
         admobView.load(GADRequest())
