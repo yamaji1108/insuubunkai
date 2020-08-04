@@ -47,7 +47,7 @@ class RankingViewController: UIViewController, UICollectionViewDataSource, UICol
     var hu5Record = ""
     
     let dispatchGroup = DispatchGroup()
-    let queue1 = DispatchQueue(label: "キュー1")
+    let queue1 = DispatchQueue(label: "キュー1", attributes: .concurrent)//並列キュー
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -191,8 +191,7 @@ class RankingViewController: UIViewController, UICollectionViewDataSource, UICol
         
         let cellLabel1 = cell.contentView.viewWithTag(1) as! UILabel
         
-        dispatchGroup.wait(timeout: .now() + 10)
-        
+        dispatchGroup.notify(queue: .main) {
             //セルラベルにユーザー名と最高記録をランキング形式で表示
             if (String(indexPath.row) == "0") {
                 cellLabel1.text = "NORMAL"
@@ -249,7 +248,8 @@ class RankingViewController: UIViewController, UICollectionViewDataSource, UICol
             } else if (String(indexPath.row) == "23") {
                 cellLabel1.text = self.hu5Record + "秒"
             }
-            
+        }
+        
         return cell
     }
     
