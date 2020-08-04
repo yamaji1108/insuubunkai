@@ -51,6 +51,9 @@ class ResultViewController: UIViewController, GADInterstitialDelegate {
         //createAndLoadInterstitialメソッドの呼び出し
         interstitial = createAndLoadInterstitial()
         
+        //ボタン連打の禁止
+        registerButton.isExclusiveTouch = true
+        
         if UIDevice.current.userInterfaceIdiom == .pad {
             // 使用デバイスがiPadの場合
             // collectionの制約を変更
@@ -111,7 +114,7 @@ class ResultViewController: UIViewController, GADInterstitialDelegate {
     
     //インタースティシャル広告を読み込む
     func createAndLoadInterstitial() -> GADInterstitial {
-        var interstitial = GADInterstitial(adUnitID: TESTIn_ID)
+        var interstitial = GADInterstitial(adUnitID: AdMobInID)
         interstitial.delegate = self
         interstitial.load(GADRequest())
         return interstitial

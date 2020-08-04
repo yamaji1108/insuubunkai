@@ -14,16 +14,18 @@ import NCMB
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    //********** APIキーの設定 **********
-    let applicationkey = "f1f29925de13b3e97a03652d4030d3af916dd13d9bc9bff70b22e34de645e690"
-    let clientkey      = "223ad430c7fcda0f895e018b5827b5376e945ed85ccb9194b50bc359542cf46d"
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         //********** SDKの初期化 **********
-        NCMB.setApplicationKey(applicationkey, clientKey: clientkey)
+        
+        // パスとURLの生成
+        let plistPath = Bundle.main.path(forResource: "Info", ofType: "plist")!
+        let url:URL = URL(fileURLWithPath: plistPath)
+        let plist = NSDictionary(contentsOfFile: url.path)
+        
+        NCMB.setApplicationKey(plist!["applicationkey"] as? String, clientKey:plist!["clientkey"] as? String)
         
         FirebaseApp.configure()
         

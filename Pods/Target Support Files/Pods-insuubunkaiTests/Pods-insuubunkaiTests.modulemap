@@ -1,0 +1,6 @@
+framework module Pods_insuubunkaiTests {
+  umbrella header "Pods-insuubunkaiTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
