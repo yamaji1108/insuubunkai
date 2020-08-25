@@ -127,13 +127,26 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
         
         if UIDevice.current.userInterfaceIdiom == .phone {
             // 使用デバイスがiPhoneの場合
-            layout.minimumLineSpacing = 14
-            let cellWidth = floor((self.view.frame.width * 0.75 - 100)/3)
-            layout.itemSize = CGSize(width: cellWidth, height: cellWidth)
-            CollectionView1.collectionViewLayout = layout
-            collectionViewHeightConstraint.constant = cellWidth * 4 + 52
-            collectionViewWidthConstraint.constant = cellWidth * 3 + 28
-            print("cellWidthは",cellWidth)
+            
+            let deviceName = UIDevice.modelName
+            let deviceVersion = UIDevice.systemVersion
+            print("device = \(deviceName)(\(deviceVersion))")
+            //iPhone7だけ別
+            if(deviceName == "iPhone7,1")||(deviceName == "iPhone7,2"){
+                layout.minimumLineSpacing = 20
+                let cellWidth = floor(CollectionView1.bounds.width * 0.26)
+                layout.itemSize = CGSize(width: cellWidth, height: cellWidth)
+                CollectionView1.collectionViewLayout = layout
+            }
+            else {
+                layout.minimumLineSpacing = 14
+                let cellWidth = floor((self.view.frame.width * 0.75 - 100)/3)
+                layout.itemSize = CGSize(width: cellWidth, height: cellWidth)
+                CollectionView1.collectionViewLayout = layout
+                collectionViewHeightConstraint.constant = cellWidth * 4 + 52
+                collectionViewWidthConstraint.constant = cellWidth * 3 + 28
+            }
+            
         } else if UIDevice.current.userInterfaceIdiom == .pad {
             // 使用デバイスがiPadの場合
             //制約の修正
@@ -628,12 +641,11 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
             audioPlayerInstance1.play()
             
             gifImage.image = UIImage(named: "丸（透過）")
-            gifImage.isHidden = false
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 // 1.5秒後に実行する処理
-                // imageを非表示
-                self.gifImage.isHidden = true
+                // imageを削除
+                self.gifImage.removeFromSuperview()
                 self.nijisikiImage1.removeFromSuperview()
                 self.nijisikiImage2.removeFromSuperview()
                 
@@ -680,19 +692,10 @@ class View2ViewController: UIViewController, UICollectionViewDataSource, UIColle
             // 再生する
             audioPlayerInstance2.play()
             
-            gifImage.image = UIImage(named: "バツマーク（手書き）")
-            self.gifImage.isHidden = false
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                // 0.5秒後に実行する処理
-                // imageを非表示
-                self.gifImage.isHidden = true
-                
-                self.inputLabel1.text = ""
-                self.inputLabel2.text = ""
-                self.inputLabel3.text = ""
-                self.inputLabel4.text = ""
-            }
+            inputLabel1.text = ""
+            inputLabel2.text = ""
+            inputLabel3.text = ""
+            inputLabel4.text = ""
             
         }
     }
