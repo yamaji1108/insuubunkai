@@ -34,15 +34,15 @@ extension UIDevice {
         var systemInfo = utsname()
         uname(&systemInfo)
 
-        let machine = systemInfo.machine
-        let mirror = reflect(machine)
-        var identifier = ""
-
-        for i in 0..<mirror.count {
-            if let value = mirror[i].1.value as? Int8, value != 0 {
-                identifier.append(UnicodeScalar(UInt8(value)))
-            }
-        }
-        return DeviceList[identifier] ?? identifier
+//        let machine = systemInfo.machine
+//        let mirror = reflect(machine)
+//        var identifier = ""
+//
+//        for i in 0..<mirror.count {
+//            if let value = mirror[i].1.value as? Int8, value != 0 {
+//                identifier.append(UnicodeScalar(UInt8(value)))
+//            }
+//        }
+        return "string" //DeviceList[identifier] ?? identifier
     }
 }

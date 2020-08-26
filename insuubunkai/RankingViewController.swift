@@ -55,14 +55,14 @@ class RankingViewController: UIViewController, UICollectionViewDataSource, UICol
         
         // デバイスによってセルのサイズを分岐
         let layout = UICollectionViewFlowLayout()
-//        if UIDevice.current.userInterfaceIdiom == .phone {
-//            // 使用デバイスがiPhoneの場合
-//            //layout.minimumLineSpacing = 5
-//            let cellWidth = floor(collectionView.bounds.width * 0.45)
-//            let cellHight = floor(cellWidth * 0.3)
-//            layout.itemSize = CGSize(width: cellWidth, height: cellHight)
-//            collectionView.collectionViewLayout = layout
-//        }
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            // 使用デバイスがiPhoneの場合
+            //layout.minimumLineSpacing = 5
+            let cellWidth = floor(collectionView.bounds.width * 0.45)
+            let cellHight = floor(cellWidth * 0.3)
+            layout.itemSize = CGSize(width: cellWidth, height: cellHight)
+            collectionView.collectionViewLayout = layout
+        }
         
         if UIDevice.current.userInterfaceIdiom == .pad {
             // 使用デバイスがiPadの場合
@@ -164,7 +164,7 @@ class RankingViewController: UIViewController, UICollectionViewDataSource, UICol
         let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
-        return CGSize(width: widthPerItem, height: widthPerItem + 42)
+        return CGSize(width: widthPerItem, height: widthPerItem/3)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
