@@ -6,7 +6,6 @@
 //  Copyright © 2019 山田拓也. All rights reserved.
 //
 
-// developブランチで編集を加えた。テスト
 
 import UIKit
 import GoogleMobileAds
@@ -22,8 +21,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
     
     @IBOutlet weak var highscoreLabel: UILabel!
-    @IBOutlet weak var newrecordLabel: UILabel!    
-
+    @IBOutlet weak var newrecordLabel: UILabel!
+    
     @IBOutlet weak var levelSeg: UISegmentedControl!
     
     //ハイスコア管理
